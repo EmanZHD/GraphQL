@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* -------Basic reset for layout------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            /* align-items: center; Center content horizontally */
+            /* justify-content: center; /* Center content vertically */
+        }
+
+        /* Grid container */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            padding: 10px;
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        /* .container {
+            width: 90%;
+            /* Set width to 90% of the browser 
+
+        } */
+
+        /* Individual grid items */
+        .item {
+            background-color: lightpink;
+            /* color: white; */
+            padding: 7rem;
+            text-align: center;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            border: 2px solid #000;
+        }
+
+        /* Full-width item using negative line numbers */
+        .footer {
+            /* color: white; */
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bolder;
+            /* border-radius: 5px; */
+            grid-column: 1 / -1;
+            color: #5b6088;
+            position: relative;
+            margin-top: auto;
+            background-color: lightblue;
+        }
+
+        .nav {
+            /* display: flex;
+            gap: 20px;
+            align-items: center; */
+            /* color: white; */
+            padding: 20px;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+            background-color: lightblue;
+            gap: 20px;
+
+        }
+
+        /* Edit height of items except nav and footer */
+        .grid .item:not(.nav):not(.footer) {
+            height: 11rem;
+        }
+
+        .space-separator {
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            color: #5b6088;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: blueviolet;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                /* 1 column for smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="container"> -->
+    <div class="nav">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Log Out</a>
+    </div>
+    <div class="grid">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+    </div>
+    <div class="footer">crafted by izahid</div>
+    <!-- </div> -->
+</body>
+
+</html>
