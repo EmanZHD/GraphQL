@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     overflow: hidden;
     background-image: url(https://transport.zone01oujda.ma/_next/static/media/01-trame.16f20322.svg);
     background-size: cover;
@@ -140,7 +140,7 @@ form {
 }
 
 .input-div.focus>.i>i {
-    color: #38d39f;
+    color: #fad7ee;
 }
 
 .input-div>div>input {
@@ -166,13 +166,13 @@ a {
     display: block;
     text-align: right;
     text-decoration: none;
-    color: #999;
-    font-size: 0.9rem;
+    /* color: #999; */
+    font-size: 1.1rem;
     transition: .3s;
 }
 
 a:hover {
-    color: #38d39f;
+    color: #fad7ee;
 }
 
 /* .btn {
@@ -237,7 +237,7 @@ margin-top: 18px;
     width: 50%;
     display: block;
     /* Change this to block */
-    margin: 18px auto;
+    margin: 30px auto;
     /* Center the button horizontally */
 }
 
@@ -267,7 +267,8 @@ margin-top: 18px;
 }
 
 .logo-container img {
-    height: 100px;
+    /* height: 100px; */
+    height: 5rem;
     /* Adjust the height of the logo as needed */
     border-radius: 50%;
 }
@@ -278,6 +279,128 @@ margin-top: 18px;
 }
 
 
+/* welcome part */
+/* Login Welcome Styles */
+.login-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    color: #fad7ee;
+}
+
+.login-welcome p {
+    margin: 0;
+    font-size: 1.2rem;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.login-welcome .line {
+    flex: 1;
+    height: 2px;
+    background-color: #fff;
+    max-width: 80px;
+}
+
+/* Adjust for mobile */
+@media screen and (max-width: 768px) {
+    .login-welcome p {
+        font-size: 1rem;
+    }
+
+    .login-welcome .line {
+        max-width: 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .login-welcome p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Footer Styles */
+.footer-part {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 100;
+    border-top: 1px solid #fff;
+}
+
+.footer-part p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.footer-part a {
+    color: #0062F9;
+    text-decoration: none;
+    display: inline;
+    transition: color 0.3s;
+}
+
+.footer-part a:hover {
+    color: #fad7ee;
+}
+
+
+@media screen and (max-width: 768px) {
+    .footer-part p {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer-part {
+        padding: 8px 0;
+    }
+
+    .footer-part p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Adjust container padding to prevent footer overlap */
+/* .container {
+    padding-bottom: 60px;
+} */
+
+/* show password */
+/* Show/Hide Password Styles */
+.input-div.pass {
+    position: relative;
+    grid-template-columns: 7% 80% 13% !important;
+    /* Adjust grid columns */
+}
+
+.show-hide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #d9d9d9;
+    transition: color 0.3s;
+}
+
+.show-hide:hover {
+    color: #0062F9;
+}
+
+.show-hide i {
+    font-size: 1rem;
+}
 
 
 @media screen and (max-width: 1050px) {
@@ -289,6 +412,7 @@ margin-top: 18px;
 @media screen and (max-width: 1000px) {
     form {
         width: 290px;
+        /* width: 25rem; */
     }
 
     .login-content h2 {
@@ -302,6 +426,10 @@ margin-top: 18px;
 }
 
 @media screen and (max-width: 900px) {
+    /* form {
+        width: 25rem;
+    } */
+
     .container {
         grid-template-columns: 1fr;
     }
