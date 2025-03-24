@@ -5,42 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form Responsive</title>
-    <!-- Google Font -->
+    <title>01Oujda-GraphQL</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('passwordInput');
-            const eyeIcon = document.querySelector('.show-hide i');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-    </script>
-    <!-- mycss -->
     <link rel="stylesheet" href="assets/css/global.css">
 </head>
 
 <body>
-    <!-- <img> -->
     <div class="overlay"></div>
-    <div class="container">
-        <div class="img">
+    <div class="grid-container">
+        <div class="graph-img">
             <img src="assets/img/graphql-opened.svg" alt="">
         </div>
 
-        <!-- Login Content -->
-        <div class="login-content">
+        <main>
             <form action="">
-                <!-- <img src="assets/img/profile.png" alt=""> -->
                 <h2 class="title">
                     <div class="logo-container">
                         <img src="assets/img/logo.png" alt="">
@@ -55,35 +35,34 @@
                     <span class="line"></span>
                 </div>
                 <!-- Input Username -->
-                <div class="input-div one">
-                    <div class="i">
+                <div class="input-div first">
+                    <div class="icon">
                         <i class="fa-regular fa-user"></i>
                     </div>
-                    <div class="div">
+                    <div class="username">
                         <h5>Email or Username</h5>
                         <input type="text" class="input">
                     </div>
                 </div>
-                <!-- End Input Username -->
-
                 <!-- Input Password -->
-                <div class="input-div pass">
-                    <div class="i">
+                <div class="input-div second">
+                    <div class="icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <div class="div">
+                    <div class="pass">
                         <h5>Password</h5>
                         <input type="password" class="input" id="passwordInput">
                     </div>
-                    <div class="show-hide" onclick="togglePassword()">
+                    <div class="show-hide">
                         <i class="fas fa-eye-slash"></i>
                     </div>
                 </div>
-                <!-- End Input Password -->
+
                 <input type="submit" class="btn" value="Login">
             </form>
-        </div>
-        <footer class="footer-part">
+        </main>
+
+        <footer>
             <div class="footer-content"></div>
         </footer>
     </div>

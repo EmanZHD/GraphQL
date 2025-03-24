@@ -3,284 +3,100 @@
 
 <head>
     <style>
-        /* -------Basic reset for layout------- */
-        /* * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            /* align-items: center; Center content horizontally */
-        /* justify-content: center; /* Center content vertically 
-        } */
-        /* styles.css */
+        /* ---------General Styling--------- */
         * {
+            border-radius: 0;
             box-sizing: border-box;
-            margin: 0;
             padding: 0;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
+        .grid-container {
+            width: 100%;
             height: 100vh;
-            align-items: center;
-            /* Center content horizontally */
-            justify-content: center;
-            /* Center content vertically */
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
+            display: grid;
+            grid: "nav nav nav" 70px "aside main main" 1fr "footer footer footer" 60px / 40% 1fr 1fr;
+            gap: 10px;
         }
 
-        .login-container {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
+        aside,
+        main,
+        footer {
+            display: grid;
+            place-items: center;
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #333;
+        /* ---------aside style--------- */
+
+        aside {
+            grid-area: aside;
+            background-color: lightgreen;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #555;
+        /* ---------main style--------- */
+
+        main {
+            grid-area: main;
+            background-color: lightpink;
         }
 
-        .input-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
+        /* ---------footer style--------- */
+
+        footer {
+            grid-area: footer;
+            background-color: lightgray;
         }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .forgot-password {
-            display: block;
-            margin-top: 0.5rem;
-            color: #007bff;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        .remember-me {
+        /* ---------nav style--------- */
+        nav {
+            grid-area: nav;
+            background-color: lightblue;
+            /* display: grid; */
+            /* place-items: center; */
             display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
+            justify-content: space-between;
+            padding: 0 40px;
         }
 
-        .remember-me input {
-            margin-right: 0.5rem;
+        .nav-left {
+            display: flex;
+            gap: 10px;
         }
 
+        .nav-right {
+            display: flex;
+            /* gap: 10px; */
+        }
+
+        /* ---------buttons style--------- */
         button {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #007bff;
-            color: #fff;
             border: none;
-            border-radius: 4px;
-            font-size: 1rem;
+            background: none;
             cursor: pointer;
+            font-size: 1rem;
         }
 
         button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            h2 {
-                font-size: 1.25rem;
-            }
-        }
-
-        /* Grid container */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px;
-            padding: 10px;
-            flex-grow: 1;
-            width: 100%;
-            max-width: 1200px;
-            margin: 2rem auto;
-        }
-
-        /* .container {
-            width: 90%;
-            /* Set width to 90% of the browser 
-
-        } */
-
-        /* Individual grid items */
-        .item {
-            background-color: lightpink;
-            /* color: white; */
-            padding: 7rem;
-            text-align: center;
-            font-size: 1.2rem;
-            border-radius: 5px;
-            border: 2px solid #000;
-        }
-
-        /* Full-width item using negative line numbers */
-        .footer {
-            /* color: white; */
-            padding: 20px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bolder;
-            /* border-radius: 5px; */
-            grid-column: 1 / -1;
-            color: #5b6088;
-            position: relative;
-            margin-top: auto;
-            background-color: lightblue;
-        }
-
-        .nav {
-            /* display: flex;
-            gap: 20px;
-            align-items: center; */
-            /* color: white; */
-            padding: 20px;
-            font-size: 1.2rem;
-            grid-column: 1 / -1;
-            background-color: lightblue;
-            gap: 20px;
-
-        }
-
-        /* Edit height of items except nav and footer */
-        .grid .item:not(.nav):not(.footer) {
-            height: 11rem;
-        }
-
-        .space-separator {
-            flex-grow: 1;
-        }
-
-        .nav-link {
-            color: #5b6088;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: blueviolet;
-        }
-
-        /* Media query for smaller screens */
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-                /* 1 column for smaller screens */
-            }
+            background-color: rgba(255, 255, 255, 0.3);
+            /* Hover effect */
         }
     </style>
 </head>
 
 <body>
-    <!-- <h1>GeeksforGeeks</h1>
-        <h3>Enter your login credentials</h3>
-
-        <form action="">
-            <label for="first">
-                Username:
-            </label>
-            <input type="text" id="first" name="first" placeholder="Enter your Username" required>
-
-            <label for="password">
-                Password:
-            </label>
-            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-
-            <div class="wrap">
-                <button type="submit">
-                    Submit
-                </button>
+    <div class="grid-container">
+        <nav>
+            <div class="nav-left">
+                <button class="nav-home">Home</button>
+                <button class="nav-about">About</button>
             </div>
-        </form>
-
-        <p>Not registered?
-            <a href="#" style="text-decoration: none;">
-                Create an account
-            </a>
-        </p> -->
-    <div class="login-container">
-        <h1>01 Oujda-Bus</h1>
-        <h2>Login To Your Account</h2>
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+            <div class="nav-right">
+                <button class="nav-log">Log Out</button>
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                <a href="#" class="forgot-password">Project Password?</a>
-            </div>
-            <div class="remember-me">
-                <input type="checkbox" id="rememberMe" name="rememberMe">
-                <label for="rememberMe">Remember me</label>
-            </div>
-            <button type="submit">Sign In</button>
-        </form>
+        </nav>
+        <aside>Sidebar</aside>
+        <main>Main Content</main>
+        <footer>Footer</footer>
     </div>
-    <div class="container" style="display: none;">
-        <div class="nav">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">About</a>
-            <a href="#" class="nav-link">Log Out</a>
-        </div>
-        <div class="grid">
-            <div class="item">1</div>
-            <div class="item">2</div>
-            <div class="item">3</div>
-            <div class="item">4</div>
-            <div class="item">5</div>
-            <div class="item">6</div>
-        </div>
-        <div class="footer">crafted by izahid</div>
-    </div>
-    <script src="./ui></script>
 </body>
 
 </html>
