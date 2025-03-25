@@ -1,5 +1,6 @@
 import { footer_templ, login_form, logo_templ } from "./Templates.js"
 import { setupLOgin, LogOUt } from "./login.js"
+import { load_profile } from "./profile.js"
 
 export const Domain = 'learn.zone01oujda.ma'
 const main = document.querySelector('main')
@@ -47,6 +48,7 @@ const renderHome = () => {
     <button class="logout-btn">Logout</button>
     `
     injectFooter()
+    load_profile()
     document.querySelector('.logout-btn').addEventListener('click', (e) => LogOUt(e))
 }
 
