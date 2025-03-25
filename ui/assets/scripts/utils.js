@@ -23,7 +23,11 @@ const injectFooter = () => {
 }
 
 const injectLOgo = () => {
-    document.querySelector('.grid-container').append = logo_templ
+    const global = document.querySelector('.grid-container')
+    const graphImgDiv = document.createElement('div')
+    graphImgDiv.className = 'graph-img'
+    graphImgDiv.innerHTML = '<img src="assets/img/graphql-opened.svg" alt="GraphQL Logo">'
+    global.insertBefore(graphImgDiv, global.firstChild);
 }
 
 // ----------------- mainContent func-----------------
@@ -34,6 +38,10 @@ const mainContent = () => {
 
 // ----------------- renderHome func-----------------
 const renderHome = () => {
+    const logo_img = document.querySelector('.graph-img')
+    if (logo_img) {
+        logo_img.remove()
+    }
     main.innerHTML = `<h1>You are successfully authenticated</h1>
     <button class="logout-btn">Logout</button>
     `
@@ -48,6 +56,7 @@ const renderError = (err) => {
 // ----------------- renderLOgin func-----------------
 const renderLOgin = () => {
     injectFooter()
+    injectLOgo()
     mainContent()
     // setupLOgin()
 }
@@ -64,7 +73,7 @@ export const routing = (template) => {
             break
         case ('login'):
             renderLOgin()
-            injectLOgo()
+            // injectLOgo()
             togleINputs()
     }
 }
