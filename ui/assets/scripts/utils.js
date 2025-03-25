@@ -22,12 +22,13 @@ const injectFooter = () => {
     getCurrentYearAsMax()
 }
 
+// ----------------- injectLOgo func-----------------
 const injectLOgo = () => {
     const global = document.querySelector('.grid-container')
     const graphImgDiv = document.createElement('div')
     graphImgDiv.className = 'graph-img'
     graphImgDiv.innerHTML = '<img src="assets/img/graphql-opened.svg" alt="GraphQL Logo">'
-    global.insertBefore(graphImgDiv, global.firstChild);
+    global.insertBefore(graphImgDiv, global.firstChild)
 }
 
 // ----------------- mainContent func-----------------
@@ -45,6 +46,7 @@ const renderHome = () => {
     main.innerHTML = `<h1>You are successfully authenticated</h1>
     <button class="logout-btn">Logout</button>
     `
+    injectFooter()
     document.querySelector('.logout-btn').addEventListener('click', (e) => LogOUt(e))
 }
 
