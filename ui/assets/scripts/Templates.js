@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01Oujda-GraphQL</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-    <link rel="stylesheet" href="assets/css/global.css">
-</head>
-
-<body>
-    <div class="overlay"></div>
-    <div class="grid-container">
-        <div class="graph-img">
-            <img src="assets/img/graphql-opened.svg" alt="">
-        </div>
-
-        <main>
-            <form action="">
+export const login_form = `
+            <form id="login-form">
                 <h2 class="title">
                     <div class="logo-container">
                         <img src="assets/img/logo.png" alt="">
@@ -41,7 +20,7 @@
                     </div>
                     <div class="username">
                         <h5>Email or Username</h5>
-                        <input type="text" class="input">
+                        <input type="text" class="input" id="identifier" name="identifier" required>
                     </div>
                 </div>
                 <!-- Input Password -->
@@ -51,23 +30,20 @@
                     </div>
                     <div class="pass">
                         <h5>Password</h5>
-                        <input type="password" class="input" id="passwordInput">
+                        <input type="password" class="input" id="password" name="password" required>
                     </div>
                     <div class="show-hide">
                         <i class="fas fa-eye-slash"></i>
                     </div>
                 </div>
 
-                <input type="submit" class="btn" value="Login">
+    <button type="submit" class="btn" id="loginButton">
+        <span class="btn-text">Login</span>
+        <span class="spinner hidden" id="spinner"></span>
+    </button>
+                <!-- <input type="submit" class="btn" value="Login"> -->
             </form>
-        </main>
-
-        <footer>
-            <div class="footer-content"></div>
-        </footer>
-    </div>
-
-    <script type="text/javascript" src="assets/js/main.js"></script>
-</body>
-
-</html>
+`
+export const footer_templ = `
+    <div class="footer-content"></div>
+`
