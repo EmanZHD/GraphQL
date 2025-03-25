@@ -1,6 +1,16 @@
 import { Domain, routing } from "./utils.js"
 
 export const load_profile = () => {
+    console.log('nav',)
+    const nav = document.querySelector('nav')
+    nav.style.display = 'block'
+    nav.innerHTML = `<div class="nav-left">
+                <button class="nav-home">Home</button>
+                <button class="nav-about">About</button>
+            </div>
+            <div class="nav-right">
+                <button class="nav-log">Log Out</button>
+            </div>`
     const tocken = localStorage.getItem('tocken')
     const query = `{
         user{
