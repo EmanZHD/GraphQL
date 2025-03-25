@@ -286,6 +286,12 @@ a:hover {
     padding: 0.4rem;
 }
 
+/* -------------------- style nav -------------------- */
+
+nav {
+    display: none;
+}
+
 /* -------------------- style footer -------------------- */
 footer {
     position: fixed;

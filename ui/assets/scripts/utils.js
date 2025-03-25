@@ -1,10 +1,11 @@
-import { footer_templ, login_form } from "./Templates.js"
+import { footer_templ, login_form, logo_templ } from "./Templates.js"
 import { setupLOgin, LogOUt } from "./login.js"
 
 export const Domain = 'learn.zone01oujda.ma'
 const main = document.querySelector('main')
 const footer = document.querySelector('footer')
 
+// ----------------- alert_popup func-----------------
 export function getCurrentYearAsMax() {
     const currentYear = new Date().getFullYear();
     document.querySelector('footer').innerHTML = footer_templ
@@ -14,15 +15,24 @@ export function getCurrentYearAsMax() {
     <a href="https://learn.zone01oujda.ma/git/izahid">izahid</a>. All Rights Reserved.</p>
     `
 }
+
+// ----------------- injectFooter func-----------------
 const injectFooter = () => {
     footer.innerHTML = ''
     getCurrentYearAsMax()
 }
+
+const injectLOgo = () => {
+    document.querySelector('.grid-container').append = logo_templ
+}
+
+// ----------------- mainContent func-----------------
 const mainContent = () => {
     main.innerHTML = login_form
     setupLOgin()
 }
 
+// ----------------- renderHome func-----------------
 const renderHome = () => {
     main.innerHTML = `<h1>You are successfully authenticated</h1>
     <button class="logout-btn">Logout</button>
@@ -30,15 +40,19 @@ const renderHome = () => {
     document.querySelector('.logout-btn').addEventListener('click', (e) => LogOUt(e))
 }
 
+// ----------------- renderError func-----------------
 const renderError = (err) => {
     main.innerHTML = `Ooops, ERROR in ${err}`
 }
+
+// ----------------- renderLOgin func-----------------
 const renderLOgin = () => {
     injectFooter()
     mainContent()
     // setupLOgin()
 }
 
+// ----------------- routing func-----------------
 export const routing = (template) => {
     switch (template) {
         case ('home'):
@@ -50,10 +64,12 @@ export const routing = (template) => {
             break
         case ('login'):
             renderLOgin()
+            injectLOgo()
             togleINputs()
     }
 }
 
+// ----------------- displayERror func-----------------
 export const displayERror = (error) => {
     console.log('test error', error)
     document.getElementById('identifier').value = '';
@@ -78,6 +94,7 @@ export const alert_popup = (alertSetting) => {
     document.querySelector('.err-mssg').innerHTML = `${alertSetting.errMssg}`
 }
 
+// ----------------- togleINputs func-----------------
 export const togleINputs = () => {
     const inputs = document.querySelectorAll(".input");
     const toggleIcon = document.querySelector(".show-hide")

@@ -47,3 +47,8 @@ export const login_form = `
 export const footer_templ = `
     <div class="footer-content"></div>
 `
+export const logo_templ = `
+        <div class="graph-img">
+            <img src="assets/img/graphql-opened.svg" alt="">
+        </div>
+`

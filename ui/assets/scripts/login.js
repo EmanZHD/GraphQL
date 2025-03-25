@@ -33,9 +33,6 @@ export const verifyJWT = async () => {
     }
 }
 
-const identifier = document.querySelector('#identifier')
-const password = document.querySelector('#password')
-
 // -------------- setupLOgin func --------------
 export const setupLOgin = () => {
     console.log('in setup login')
