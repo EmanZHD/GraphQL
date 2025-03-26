@@ -63,7 +63,9 @@ export const load_profile = () => {
         }
     ).then(response => response.json())
         .then(data => {
-            console.log('transaction =>', data.data.transaction[0])
+            data.data.transaction.forEach(element => {
+                console.log('transaction =>', element.type)
+            })
             let xpTab = data.data.transaction.filter((elem) => elem.type === 'xp' && elem.event.object.type === "module").map(elem => elem.amount)
             // console.log('XP=> ', xpTab)
             let initialValue = 0
@@ -71,7 +73,7 @@ export const load_profile = () => {
                 initialValue,)
             info.xpAmount = info.xpAmount / 1000 + (info.xpAmount / 1000 > 1000 ? " MB" : " KB")
             console.log('final', info.xpAmount)
-            loading_info()
+            // loading_info()
         })
         .catch(err => routing('error'))
 }
