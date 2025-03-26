@@ -21,7 +21,7 @@ body {
 
 
 /* -------------------- style container -------------------- */
-.grid-container {
+.login {
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -289,7 +289,7 @@ a:hover {
 /* -------------------- style nav -------------------- */
 
 nav {
-    display: none;
+    /* visibility: hidden; */
 }
 
 /* -------------------- style footer -------------------- */
@@ -325,7 +325,7 @@ footer a:hover {
 /* -------------------- style media -------------------- */
 
 @media screen and (max-width: 1050px) {
-    .grid-container {
+    .login {
         grid-gap: 5rem;
     }
 }
@@ -351,7 +351,7 @@ footer a:hover {
         width: 25rem;
     } */
 
-    .grid-container {
+    .login {
         grid-template-columns: 1fr;
     }
 
@@ -369,7 +369,7 @@ footer a:hover {
         font-size: 1rem;
     }
 
-    .grid-container {
+    .login {
         padding-bottom: 50px;
     }
 }
@@ -400,7 +400,15 @@ footer a:hover {
     }
 }
 
-/* .grid-container {
+
+/* style home page */
+* {
+    border-radius: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.profile {
     width: 100%;
     height: 100vh;
     display: grid;
@@ -408,9 +416,10 @@ footer a:hover {
     gap: 10px;
 }
 
-aside,
-main,
-footer {
+
+
+/* aside, */
+.profile main {
     display: grid;
     place-items: center;
 }
@@ -424,10 +433,10 @@ footer {
 
 /* ---------main style--------- */
 
-/* main {
+.profile main {
     grid-area: main;
     background-color: lightpink;
-} */
+}
 
 /* ---------footer style--------- */
 
@@ -437,35 +446,34 @@ footer {
 } */
 
 /* ---------nav style--------- */
-/* nav {
+.profile nav {
     grid-area: nav;
-    background-color: lightblue; */
-/* display: grid; */
-/* place-items: center; */
-/* display: flex;
+    background-color: lightblue;
+    display: grid;
+    /* place-items: center; */
+    display: flex;
     justify-content: space-between;
     padding: 0 40px;
-} */
+}
 
-/* .nav-left {
+.nav-left {
     display: flex;
     gap: 10px;
-} */
-/* 
+}
+
 .nav-right {
     display: flex;
-    /* gap: 10px; */
-/* } */
+    gap: 10px;
+}
 
 /* ---------buttons style--------- */
-/* button {
+.profile button {
     border: none;
     background: none;
     cursor: pointer;
     font-size: 1rem;
-} */
+}
 
-/* button:hover {
+.profile button:hover {
     background-color: rgba(255, 255, 255, 0.3);
-    /* Hover effect 
-} */
+}

@@ -1,16 +1,22 @@
 import { Domain, routing } from "./utils.js"
 
-export const load_profile = () => {
-    console.log('nav',)
-    const nav = document.querySelector('nav')
-    nav.style.display = 'block'
+
+const injectNav = () => {
+    const gridContainer = document.querySelector('.grid-container');
+    const main = document.querySelector('main')
+    const nav = document.createElement('nav')
     nav.innerHTML = `<div class="nav-left">
-                <button class="nav-home">Home</button>
-                <button class="nav-about">About</button>
-            </div>
-            <div class="nav-right">
-                <button class="nav-log">Log Out</button>
-            </div>`
+    <button class="nav-home">Home</button>
+    <button class="nav-about">About</button>
+    </div>
+    <div class="nav-right">
+    <button class="nav-log">Log Out</button>
+    </div>`
+    gridContainer.insertBefore(nav, main)
+}
+
+export const load_profile = () => {
+    injectNav()
     const tocken = localStorage.getItem('tocken')
     const query = `{
         user{

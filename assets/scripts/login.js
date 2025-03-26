@@ -91,7 +91,9 @@ const verifyCredentials = async () => {
 
 // -------------- LogOUt func --------------
 export const LogOUt = (e) => {
+    const nav = document.querySelector('nav')
     e.preventDefault()
     localStorage.removeItem('tocken')
+    if (nav) { nav.remove() }
     routing('login')
 }

@@ -5,6 +5,7 @@ import { load_profile } from "./profile.js"
 export const Domain = 'learn.zone01oujda.ma'
 const main = document.querySelector('main')
 const footer = document.querySelector('footer')
+const nav = document.querySelector('nav')
 
 // ----------------- alert_popup func-----------------
 export function getCurrentYearAsMax() {
@@ -45,18 +46,16 @@ const renderHome = () => {
         logo_img.remove()
     }
     main.innerHTML = `<h1>You are successfully authenticated</h1>
-    <button class="logout-btn">Logout</button>
     `
     injectFooter()
     load_profile()
-    document.querySelector('.logout-btn').addEventListener('click', (e) => LogOUt(e))
+    document.querySelector('.nav-log').addEventListener('click', (e) => LogOUt(e))
 }
 
 // ----------------- renderError func-----------------
 const renderError = (err) => {
     main.innerHTML = `Ooops, ERROR in ${err}`
 }
-
 // ----------------- renderLOgin func-----------------
 const renderLOgin = () => {
     injectFooter()
@@ -69,13 +68,14 @@ const renderLOgin = () => {
 export const routing = (template) => {
     switch (template) {
         case ('home'):
-            // renderHome()
+            document.querySelector('.grid-container').className = 'grid-container profile'
             renderHome()
             break
         case ('error'):
             renderError()
             break
         case ('login'):
+            document.querySelector('.grid-container').className = 'grid-container login'
             renderLOgin()
             // injectLOgo()
             togleINputs()
