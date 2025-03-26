@@ -464,7 +464,8 @@ footer a:hover {
     /* place-items: center; */
     display: flex;
     justify-content: space-between;
-    padding: 0 40px;
+    padding: 0px 40px;
+    border-bottom: 1px solid #fff;
 }
 
 .nav-left {
@@ -754,71 +755,75 @@ footer a:hover {
     display: flex;
     /* height: 100%; */
     padding: 0;
-  }
-  
-  .income-summary .section {
+}
+
+.income-summary .section {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 15px 10px;
     border-right: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .income-summary .section:last-child {
+}
+
+.income-summary .section:last-child {
     border-right: none;
-  }
-  
-  .vertical-text {
+}
+
+.vertical-text {
     /* writing-mode: vertical-rl;
     transform: rotate(180deg); */
     text-align: center;
     line-height: 1.4;
-  }
-  
-  .vertical-text span {
+}
+
+.vertical-text span {
     display: block;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     letter-spacing: 1px;
-  }
-  
-  /* Background colors for each section */
-  .income-summary .section.total {
+    font-weight: bolder;
+}
+
+/* Background colors for each section */
+.income-summary .section.total {
     background: rgba(0, 98, 249, 0.15);
-  }
-  .income-summary .section.audit {
+}
+
+.income-summary .section.audit {
     background: rgba(76, 175, 80, 0.15);
-  }
-  .income-summary .section.project {
+}
+
+.income-summary .section.project {
     background: rgba(255, 152, 0, 0.15);
-  }
-  .income-summary .section.level {
+}
+
+.income-summary .section.level {
     background: rgba(156, 39, 176, 0.15);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
     .dashboard-card.income-summary {
-      flex-direction: column;
-      height: auto;
+        flex-direction: column;
+        height: auto;
     }
-    
+
     .income-summary .section {
-      border-right: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 10px 15px;
-      justify-content: flex-start;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 10px 15px;
+        justify-content: flex-start;
     }
-    
+
     .vertical-text {
-      writing-mode: horizontal-tb;
-      transform: none;
-      display: flex;
-      gap: 10px;
+        writing-mode: horizontal-tb;
+        transform: none;
+        display: flex;
+        gap: 10px;
     }
-    
+
     .vertical-text span {
-      font-size: 1rem;
+        font-size: 1rem;
     }
-  }
+}

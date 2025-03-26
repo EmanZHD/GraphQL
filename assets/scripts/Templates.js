@@ -77,15 +77,15 @@ export const buildDashboard = () => {
 <div class="dashboard-card income-summary">
   <div class="section total">
     <div class="vertical-text">
-      <strong>TOTAL</strong>
+      <strong>TOTAL XP</strong>
       <span>676.3 KB</span>
       <span></span>
     </div>
   </div>
   <div class="section audit">
     <div class="vertical-text">
-      <strong>AUDIT</strong>
-      <span>RATIO 1.5</span>
+      <strong>Audit Ratio</strong>
+      <span>1.5</span>
     </div>
   </div>
   <div class="section project">
@@ -104,7 +104,7 @@ export const buildDashboard = () => {
         
         <!-- Activity Card -->
         <div class="dashboard-card activity">
-          <h3>Activity</h3>
+          <h3>XP progression</h3>
           <div class="activity-tabs">
             <button class="active">Income</button>
             <button>Spending</button>
@@ -139,7 +139,7 @@ export const buildDashboard = () => {
       <div class="dashboard-row">
         <!-- Analytics Card -->
         <div class="dashboard-card analytics">
-          <h3>Analytics</h3>
+          <h3>Technical skills</h3>
           <div class="analytics-item">
             <span class="highlight">38%</span>
             <span class="trend-up">71 + 16%</span>
@@ -174,7 +174,7 @@ export const buildDashboard = () => {
         
         <!-- Statistics Card -->
         <div class="dashboard-card statistics">
-          <h3>Statistics</h3>
+          <h3>Technologies</h3>
           <div class="stats-grid">
             <div class="stat-item">
               <span class="stat-value">$10,000</span>
