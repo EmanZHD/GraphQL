@@ -39,8 +39,8 @@ const mainContent = () => {
     setupLOgin()
 }
 
-// ----------------- renderHome func-----------------
-const renderHome = () => {
+// ----------------- loading_Home func-----------------
+const loading_Home = () => {
     const logo_img = document.querySelector('.graph-img')
     if (logo_img) {
         logo_img.remove()
@@ -52,12 +52,12 @@ const renderHome = () => {
     document.querySelector('.nav-log').addEventListener('click', (e) => LogOUt(e))
 }
 
-// ----------------- renderError func-----------------
-const renderError = (err) => {
+// ----------------- loading_Error func-----------------
+const loading_Error = (err) => {
     main.innerHTML = `Ooops, ERROR in ${err}`
 }
-// ----------------- renderLOgin func-----------------
-const renderLOgin = () => {
+// ----------------- loading_LOgin func-----------------
+const loading_LOgin = () => {
     injectFooter()
     injectLOgo()
     mainContent()
@@ -69,14 +69,14 @@ export const routing = (template) => {
     switch (template) {
         case ('home'):
             document.querySelector('.grid-container').className = 'grid-container profile'
-            renderHome()
+            loading_Home()
             break
         case ('error'):
-            renderError()
+            loading_Error()
             break
         case ('login'):
             document.querySelector('.grid-container').className = 'grid-container login'
-            renderLOgin()
+            loading_LOgin()
             // injectLOgo()
             togleINputs()
     }

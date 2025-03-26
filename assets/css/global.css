@@ -412,7 +412,7 @@ footer a:hover {
     width: 100%;
     height: 100vh;
     display: grid;
-    grid: "nav nav nav" 70px "aside main main" 1fr "footer footer footer" 60px / 40% 1fr 1fr;
+    grid: "nav nav nav" 70px "main main main" 1fr "footer footer footer" 60px / 40% 1fr 1fr;
     gap: 10px;
 }
 
@@ -422,6 +422,7 @@ footer a:hover {
 .profile main {
     display: grid;
     place-items: center;
+    margin: 0px 20px;
 }
 
 /* ---------aside style--------- */
@@ -446,9 +447,19 @@ footer a:hover {
 } */
 
 /* ---------nav style--------- */
+.nav-home {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.nav-home img {
+    width: 3.5rem;
+}
+
 .profile nav {
     grid-area: nav;
-    background-color: lightblue;
+    /* background-color: lightblue; */
     display: grid;
     /* place-items: center; */
     display: flex;
@@ -472,8 +483,342 @@ footer a:hover {
     background: none;
     cursor: pointer;
     font-size: 1rem;
+    color: #fff;
 }
 
-.profile button:hover {
+.profile button:hover,
+.profile button:focus {
     background-color: rgba(255, 255, 255, 0.3);
+    border-bottom: 4px solid #0062F9;
 }
+
+
+/* ------------------------------- */
+/* Dashboard Styles */
+.profile main {
+    background-color: transparent !important;
+    /* Remove the pink background */
+    padding: 20px;
+    /* width: 100%; */
+    display: block !important;
+    overflow: auto;
+    border: 2px solid #fff;
+    /* Override the grid placement */
+}
+
+.dashboard {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 20px;
+    height: 100%;
+}
+
+.dashboard-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+/* Income Summary Card */
+/* .income-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.income-summary h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.income-summary h2 span {
+    color: #4CAF50;
+    font-weight: bold;
+} */
+
+.percentage-change {
+    display: flex;
+    flex-direction: column;
+}
+
+.trend-up {
+    color: #4CAF50;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.subtext {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Activity Card */
+.activity-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.activity-tabs button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.activity-tabs button.active {
+    color: #0062F9;
+    border-bottom: 2px solid #0062F9;
+}
+
+.chart-container {
+    display: flex;
+    height: 200px;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.chart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.chart-bars {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex: 1;
+    height: 100%;
+}
+
+.chart-bar {
+    background: #0062F9;
+    width: 30px;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.3s ease;
+    position: relative;
+}
+
+.chart-bar:hover {
+    opacity: 0.8;
+}
+
+.chart-x-axis {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Analytics Card */
+.analytics-item {
+    margin-bottom: 15px;
+}
+
+.highlight {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF9800;
+}
+
+.amount {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.expenses-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.expenses-table td {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.expenses-table td:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Statistics Card */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+    height: 150px;
+    align-items: flex-end;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.stat-bar {
+    width: 100%;
+    background: #0062F9;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.3s ease;
+}
+
+.months-axis {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+    font-size: 0.7rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.progress-container {
+    margin-top: 30px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4CAF50;
+    border-radius: 4px;
+}
+
+.progress-percent {
+    font-size: 0.9rem;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .dashboard-row {
+        /* flex-direction: column; */
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-card {
+        min-width: 100%;
+    }
+
+    .chart-container {
+        height: 150px;
+    }
+}
+
+
+
+
+
+
+
+.dashboard-card.income-summary {
+    display: flex;
+    /* height: 100%; */
+    padding: 0;
+  }
+  
+  .income-summary .section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .income-summary .section:last-child {
+    border-right: none;
+  }
+  
+  .vertical-text {
+    /* writing-mode: vertical-rl;
+    transform: rotate(180deg); */
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  .vertical-text span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  
+  /* Background colors for each section */
+  .income-summary .section.total {
+    background: rgba(0, 98, 249, 0.15);
+  }
+  .income-summary .section.audit {
+    background: rgba(76, 175, 80, 0.15);
+  }
+  .income-summary .section.project {
+    background: rgba(255, 152, 0, 0.15);
+  }
+  .income-summary .section.level {
+    background: rgba(156, 39, 176, 0.15);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dashboard-card.income-summary {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .income-summary .section {
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 15px;
+      justify-content: flex-start;
+    }
+    
+    .vertical-text {
+      writing-mode: horizontal-tb;
+      transform: none;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .vertical-text span {
+      font-size: 1rem;
+    }
+  }

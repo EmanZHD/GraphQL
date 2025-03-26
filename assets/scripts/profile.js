@@ -1,22 +1,9 @@
 import { Domain, routing } from "./utils.js"
-
-
-const injectNav = () => {
-    const gridContainer = document.querySelector('.grid-container');
-    const main = document.querySelector('main')
-    const nav = document.createElement('nav')
-    nav.innerHTML = `<div class="nav-left">
-    <button class="nav-home">Home</button>
-    <button class="nav-about">About</button>
-    </div>
-    <div class="nav-right">
-    <button class="nav-log">Log Out</button>
-    </div>`
-    gridContainer.insertBefore(nav, main)
-}
+import { injectNav, buildDashboard } from "./Templates.js"
 
 export const load_profile = () => {
     injectNav()
+    buildDashboard()
     const tocken = localStorage.getItem('tocken')
     const query = `{
         user{
