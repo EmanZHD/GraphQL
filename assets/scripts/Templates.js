@@ -78,8 +78,8 @@ export const buildDashboard = () => {
   <div class="section total">
     <div class="vertical-text">
       <strong>TOTAL</strong>
-      <span>676.3</span>
-      <span>XP KB</span>
+      <span>676.3 KB</span>
+      <span></span>
     </div>
   </div>
   <div class="section audit">
@@ -91,7 +91,7 @@ export const buildDashboard = () => {
   <div class="section project">
     <div class="vertical-text">
       <strong>PROJECTS</strong>
-      <span>COMPLETED 28</span>
+      <span>28</span>
     </div>
   </div>
   <div class="section level">
