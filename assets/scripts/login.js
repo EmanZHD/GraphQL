@@ -80,9 +80,9 @@ const verifyCredentials = async () => {
             return
             // throw new Error(errorData.message || 'Invalid credentials');
         }
-        const data = await response.json();
-        localStorage.setItem('tocken', data);
-        routing("home");
+        const data = await response.json()
+        localStorage.setItem('tocken', data)
+        routing("home")
     } catch (error) {
         displayERror('Invalid credentials---')
         return
