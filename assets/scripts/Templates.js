@@ -54,22 +54,23 @@ export const logo_templ = `
 `
 
 export const injectNav = () => {
-    const gridContainer = document.querySelector('.grid-container')
-    const main = document.querySelector('main')
-    const nav = document.createElement('nav')
-    nav.innerHTML = `<div class="nav-left">
+  const gridContainer = document.querySelector('.grid-container')
+  const main = document.querySelector('main')
+  const nav = document.createElement('nav')
+  nav.innerHTML = `<div class="nav-left">
     <button class="nav-home"><img src="assets/img/logo.png" alt="">-Oujda</button>
     <button class="nav-about">Gitea</button>
     </div>
     <div class="nav-right">
     <button class="nav-log">Log Out</button>
     </div>`
-    gridContainer.insertBefore(nav, main)
+  gridContainer.insertBefore(nav, main)
 }
 
 export const buildDashboard = () => {
-    const main = document.querySelector('.profile main');
-    main.innerHTML = `
+  const main = document.querySelector('.profile main');
+  main.innerHTML = `
+    <div class="wlcom-section"></div>
     <div class="dashboard">
       <!-- Top Row -->
       <div class="dashboard-row">
@@ -78,26 +79,25 @@ export const buildDashboard = () => {
   <div class="section total">
     <div class="vertical-text">
       <strong>TOTAL XP</strong>
-      <span>676.3 KB</span>
       <span></span>
     </div>
   </div>
   <div class="section audit">
     <div class="vertical-text">
       <strong>Audit Ratio</strong>
-      <span>1.5</span>
+      <span></span>
     </div>
   </div>
   <div class="section project">
     <div class="vertical-text">
       <strong>PROJECTS</strong>
-      <span>28</span>
+      <span></span>
     </div>
   </div>
   <div class="section level">
     <div class="vertical-text">
       <strong>LEVEL</strong>
-      <span>25</span>
+      <span></span>
     </div>
   </div>
 </div>
@@ -210,17 +210,17 @@ export const buildDashboard = () => {
     </div>
   `;
 
-    // Call this after login success or when building the dashboard
-    generateChartBars();
+  // Call this after login success or when building the dashboard
+  generateChartBars();
 };
 
 // Helper function to generate random chart bars
 const generateChartBars = () => {
-    const barsContainer = document.querySelector('.chart-bars');
-    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-    const heights = [85, 60, 75, 40, 65, 30, 50]; // percentages
+  const barsContainer = document.querySelector('.chart-bars');
+  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+  const heights = [85, 60, 75, 40, 65, 30, 50]; // percentages
 
-    barsContainer.innerHTML = days.map((day, i) =>
-        `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
-    ).join('');
+  barsContainer.innerHTML = days.map((day, i) =>
+    `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
+  ).join('');
 };

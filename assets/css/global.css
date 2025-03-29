@@ -478,6 +478,13 @@ footer a:hover {
     gap: 10px;
 }
 
+/* ---------section style--------- */
+
+.wlcom-section {
+    color: #fff;
+    font-size: 2rem;
+}
+
 /* ---------buttons style--------- */
 .profile button {
     border: none;
