@@ -1,5 +1,5 @@
 import { Domain, routing } from "./utils.js"
-import { injectNav, buildDashboard } from "./Templates.js"
+import { injectNav, buildDashboard, createStatsCard } from "./Templates.js"
 
 const info = {}
 
@@ -9,7 +9,7 @@ const loading_info = () => {
     const elem_project = document.querySelector('.project span')
     const elem_level = document.querySelector('.level span')
     const elem_ration = document.querySelector('.audit span')
-    elem.innerHTML = `Welcome ${info.lastname} ${info.firstname}`
+    elem.innerHTML = `Welcome, ${info.lastname} ${info.firstname}!!`
     elem_xp.innerHTML = `${info.xpAmount}`
     elem_project.innerHTML = `${info.projectAmount}`
     elem_level.innerHTML = `${info.level}`
@@ -45,15 +45,16 @@ const count_ratio = () => {
     info.ratioDown = info.transaction.filter((elem) => elem.type === 'down' && elem.event.object.type === 'module')
         .map(elem => elem.amount)
         .reduce((acc, curent) => acc + curent, init)
-    console.log('UP====>', info.ratioUp)
-    console.log('DOWN====>', info.ratioDown)
-    console.log('done->', Math.round((info.ratioUp / info.ratioDown) * 10) / 10)
+    // console.log('UP====>', info.ratioUp)
+    // console.log('DOWN====>', info.ratioDown)
+    // console.log('done->', Math.round((info.ratioUp / info.ratioDown) * 10) / 10)
     info.ratio_total = Math.round((info.ratioUp / info.ratioDown) * 10) / 10
 }
 // -------------- load_profile func --------------
 export const load_profile = () => {
     injectNav()
     buildDashboard()
+    createStatsCard()
     const tocken = localStorage.getItem('tocken')
     const query = `{
         user{

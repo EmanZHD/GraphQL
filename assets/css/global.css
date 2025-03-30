@@ -539,19 +539,19 @@ footer a:hover {
 }
 
 /* Income Summary Card */
-/* .income-summary {
+/* .user-stats {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.income-summary h2 {
+.user-stats h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: #fff;
 }
 
-.income-summary h2 span {
+.user-stats h2 span {
     color: #4CAF50;
     font-weight: bold;
 } */
@@ -758,13 +758,13 @@ footer a:hover {
 
 
 
-.dashboard-card.income-summary {
+.dashboard-card.user-stats {
     display: flex;
     /* height: 100%; */
     padding: 0;
 }
 
-.income-summary .section {
+.user-stats .section {
     flex: 1;
     display: flex;
     align-items: center;
@@ -773,18 +773,18 @@ footer a:hover {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.income-summary .section:last-child {
+.user-stats .section:last-child {
     border-right: none;
 }
 
-.vertical-text {
+.section {
     /* writing-mode: vertical-rl;
     transform: rotate(180deg); */
     text-align: center;
     line-height: 1.4;
 }
 
-.vertical-text span {
+.section span {
     display: block;
     text-transform: uppercase;
     font-size: 1.7rem;
@@ -793,44 +793,44 @@ footer a:hover {
 }
 
 /* Background colors for each section */
-.income-summary .section.total {
+.user-stats .section.total {
     background: rgba(0, 98, 249, 0.15);
 }
 
-.income-summary .section.audit {
+.user-stats .section.audit {
     background: rgba(76, 175, 80, 0.15);
 }
 
-.income-summary .section.project {
+.user-stats .section.project {
     background: rgba(255, 152, 0, 0.15);
 }
 
-.income-summary .section.level {
+.user-stats .section.level {
     background: rgba(156, 39, 176, 0.15);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .dashboard-card.income-summary {
+    .dashboard-card.user-stats {
         flex-direction: column;
         height: auto;
     }
 
-    .income-summary .section {
+    .user-stats .section {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 10px 15px;
         justify-content: flex-start;
     }
 
-    .vertical-text {
+    .section {
         writing-mode: horizontal-tb;
         transform: none;
         display: flex;
         gap: 10px;
     }
 
-    .vertical-text span {
+    .section span {
         font-size: 1rem;
     }
 }

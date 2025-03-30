@@ -67,41 +67,48 @@ export const injectNav = () => {
   gridContainer.insertBefore(nav, main)
 }
 
+const stat = [
+  { type: 'total', label: 'TOTAL XP', value: '676.3 KB' },
+  { type: 'audit', label: 'Audit Ratio', value: '1.5' },
+  { type: 'project', label: 'PROJECTS', value: '28' },
+  { type: 'level', label: 'LEVEL', value: '25' }
+]
+
+export const createStatsCard = () => {
+  const dashboardRows = document.querySelectorAll('.dashboard-row')
+  const card = document.createElement('div')
+  card.className = `dashboard-card user-stats`
+  stat.forEach(elem => {
+    const section = document.createElement('div')
+    section.className = `section ${elem.type}`
+
+    const content = document.createElement('div')
+    content.className = 'content'
+
+    const label = document.createElement('strong')
+    label.textContent = elem.label
+
+    const value = document.createElement('span')
+    // value.textContent = elem.value
+
+    content.append(label)
+    content.append(value)
+    section.append(content)
+    card.append(section)
+  })
+  dashboardRows[0].prepend(card)
+}
+
 export const buildDashboard = () => {
-  const main = document.querySelector('.profile main');
+  const main = document.querySelector('.profile main')
   main.innerHTML = `
     <div class="wlcom-section"></div>
     <div class="dashboard">
       <!-- Top Row -->
       <div class="dashboard-row">
-        <!-- Income Summary Card -->
-<div class="dashboard-card income-summary">
-  <div class="section total">
-    <div class="vertical-text">
-      <strong>TOTAL XP</strong>
-      <span></span>
-    </div>
-  </div>
-  <div class="section audit">
-    <div class="vertical-text">
-      <strong>Audit Ratio</strong>
-      <span></span>
-    </div>
-  </div>
-  <div class="section project">
-    <div class="vertical-text">
-      <strong>PROJECTS</strong>
-      <span></span>
-    </div>
-  </div>
-  <div class="section level">
-    <div class="vertical-text">
-      <strong>LEVEL</strong>
-      <span></span>
-    </div>
-  </div>
-</div>
-        
+
+        <!-- Stats Summary Card -->
+
         <!-- Activity Card -->
         <div class="dashboard-card activity">
           <h3>XP progression</h3>
@@ -208,19 +215,19 @@ export const buildDashboard = () => {
         </div>
       </div>
     </div>
-  `;
+  `
 
   // Call this after login success or when building the dashboard
-  generateChartBars();
-};
+  generateChartBars()
+}
 
 // Helper function to generate random chart bars
 const generateChartBars = () => {
-  const barsContainer = document.querySelector('.chart-bars');
-  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-  const heights = [85, 60, 75, 40, 65, 30, 50]; // percentages
+  const barsContainer = document.querySelector('.chart-bars')
+  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+  const heights = [85, 60, 75, 40, 65, 30, 50] // percentages
 
   barsContainer.innerHTML = days.map((day, i) =>
     `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
-  ).join('');
-};
+  ).join('')
+}
