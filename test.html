@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SVG Bar Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .chart-container {
+            width: 600px;
+            height: 400px;
+        }
+
+        .bar:hover {
+            opacity: 0.7;
+        }
+
+        .label {
+            font-size: 12px;
+            text-anchor: middle;
+        }
+
+        .value {
+            font-size: 11px;
+            text-anchor: middle;
+            fill: #333;
+        }
+
+        .axis-label {
+            font-size: 14px;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Your Statistics (SVG Bar Chart)</h2>
+    <div class="chart-container">
+        <svg id="chart" width="100%" height="100%" viewBox="0 0 600 400">
+            <!-- X-axis -->
+            <line x1="50" y1="350" x2="550" y2="350" stroke="#333" stroke-width="2" />
+
+            <!-- Y-axis -->
+            <line x1="50" y1="350" x2="50" y2="50" stroke="#333" stroke-width="2" />
+
+            <!-- Y-axis labels (scale) -->
+            <text x="30" y="70" class="axis-label">700kb</text>
+            <text x="30" y="150" class="axis-label">500kb</text>
+            <text x="30" y="230" class="axis-label">300kb</text>
+            <text x="30" y="310" class="axis-label">100kb</text>
+
+            <!-- Y-axis title -->
+            <text x="20" y="20" class="axis-label" transform="rotate(-90, 20, 20)">Size (kb)</text>
+
+            <!-- Bars -->
+            <g id="bars">
+                <!-- Bars will be dynamically inserted here -->
+            </g>
+
+            <!-- X-axis labels (dates) -->
+            <g id="labels">
+                <!-- Date labels will be dynamically inserted here -->
+            </g>
+        </svg>
+    </div>
+
+    <script>
+        // Your data
+        const data = {
+            "2025-04-01": 676.3,
+            "2025-03-31": 542.0,
+            "2025-03-30": 407.8,
+            "2025-03-29": 273.5,
+            "2025-03-28": 139.3,
+            "2025-03-27": 5.0
+        };
+
+        // Extract dates and values
+        const dates = Object.keys(data);
+        const values = Object.values(data);
+
+        // SVG dimensions
+        const svgWidth = 500;  // Width between axes
+        const svgHeight = 300; // Height between axes
+        const barWidth = 60;   // Width of each bar
+        const gap = 20;        // Gap between bars
+        const maxValue = 700;  // Max Y-value (adjust if needed)
+
+        // Calculate positions
+        const barsGroup = document.getElementById("bars");
+        const labelsGroup = document.getElementById("labels");
+
+        dates.forEach((date, index) => {
+            const value = values[index];
+            const barHeight = (value / maxValue) * svgHeight;
+            const xPos = 50 + (index * (barWidth + gap));
+            const yPos = 350 - barHeight;
+
+            // Create bar
+            const bar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            bar.setAttribute("x", xPos);
+            bar.setAttribute("y", yPos);
+            bar.setAttribute("width", barWidth);
+            bar.setAttribute("height", barHeight);
+            bar.setAttribute("fill", "#4bc0c0");
+            bar.setAttribute("class", "bar");
+            bar.setAttribute("data-value", value);
+            barsGroup.appendChild(bar);
+
+            // Add value label on top of the bar
+            const valueLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            valueLabel.setAttribute("x", xPos + barWidth / 2);
+            valueLabel.setAttribute("y", yPos - 5);
+            valueLabel.setAttribute("class", "value");
+            valueLabel.textContent = `${value}kb`;
+            barsGroup.appendChild(valueLabel);
+
+            // Add date label below the bar
+            const dateLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            dateLabel.setAttribute("x", xPos + barWidth / 2);
+            dateLabel.setAttribute("y", 370);
+            dateLabel.setAttribute("class", "label");
+            dateLabel.textContent = date;
+            labelsGroup.appendChild(dateLabel);
+        });
+    </script>
+</body>
+
+</html>

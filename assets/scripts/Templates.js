@@ -111,35 +111,35 @@ export const buildDashboard = () => {
 
         <!-- Activity Card -->
         <div class="dashboard-card activity">
+        
           <h3>XP progression</h3>
           <div class="activity-tabs">
-            <button class="active">Income</button>
-            <button>Spending</button>
+            <button class="active">XP growth per day</button>
           </div>
-          <div class="chart-container">
-            <div class="chart-y-axis">
-              <span>20k</span>
-              <span>15k</span>
-              <span>10k</span>
-              <span>8k</span>
-              <span>4k</span>
-              <span>2k</span>
-              <span>0k</span>
-            </div>
-            <div class="chart-bars">
-              <!-- Bars will be generated via JS -->
-            </div>
-            <div class="chart-x-axis">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
-              <span>Sun</span>
-            </div>
-          </div>
+
+          <!--  <svg id="histogram" width="400" height="400" viewBox="0 0 600 400">-->
+<!-- <svg id="xp-graph" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" width="100%">
+  <line x1="50" y1="350" x2="700" y2="350" stroke="black" stroke-width="2"/> <!-- X-awxis -->
+  <line x1="50" y1="350" x2="50" y2="10" stroke="black" stroke-width="2"/> <!-- Y-axis -->
+  
+  <!-- <text x="300" y="390" text-anchor="middle">X-axis</text>-->
+  <!-- <text x="20" y="200" text-anchor="middle" transform="rotate(-90, 20, 200)">Y-axis</text> -->
+  
+  <!-- الأعمدة ستضاف هنا عبر JavaScript -->
+ <!-- </svg> -->
+
+
+<div class="xp-graph-container">
+  <div class="graph-legend">
+    <span class="you"></span>
+  </div>
+  <div class="graph-area" id="xp-graph"></div>
+
+</div>
+
+
         </div>
+
       </div>
       
       <!-- Bottom Row -->
@@ -223,11 +223,13 @@ export const buildDashboard = () => {
 
 // Helper function to generate random chart bars
 const generateChartBars = () => {
-  const barsContainer = document.querySelector('.chart-bars')
-  const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-  const heights = [85, 60, 75, 40, 65, 30, 50] // percentages
+  // const barsContainer = document.querySelector('.chart-bars')
+  // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+  // const heights = [85, 60, 75, 40, 65, 30, 50] // percentages
 
-  barsContainer.innerHTML = days.map((day, i) =>
-    `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
-  ).join('')
+  // barsContainer.innerHTML = days.map((day, i) =>
+  //   `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
+  // ).join('')
 }
+
+

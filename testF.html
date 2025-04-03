@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive SVG Timeplot</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .chart-container {
+            width: 100%;
+            overflow: visible;
+            margin-bottom: 20px;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+        }
+
+        .data-point {
+            fill: #4bc0c0;
+            transition: all 0.2s;
+        }
+
+        .data-point:hover {
+            fill: #2a7d7d;
+            stroke: #333;
+            stroke-width: 2px;
+            r: 7;
+        }
+
+        .trend-line {
+            stroke: #4bc0c0;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .axis {
+            stroke: #333;
+            stroke-width: 1.5;
+        }
+
+        .tick {
+            stroke: #ccc;
+            stroke-width: 0.5;
+        }
+
+        .tick-text {
+            font-size: 10px;
+            fill: #666;
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        @media (max-width: 600px) {
+            .tick-text {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Your XP Progression Over Time</h2>
+    <div class="chart-container">
+        <svg id="xpChart" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
+            <!-- Elements will be added dynamically -->
+        </svg>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // Your data (ISO format recommended for Date parsing)
+        const xpData = [
+            { date: new Date('2024-05-03T15:17:33+01:00'), xp: 5 },
+            { date: new Date('2024-05-16T10:51:11+01:00'), xp: 11.125 },
+            { date: new Date('2024-05-21T12:20:29+01:00'), xp: 17.25 },
+            { date: new Date('2024-05-27T16:31:33+01:00'), xp: 23.375 },
+            { date: new Date('2024-07-18T20:03:25+01:00'), xp: 29.5 },
+            { date: new Date('2024-07-23T16:30:05+01:00'), xp: 38.7 },
+            { date: new Date('2024-08-09T17:58:11+01:00'), xp: 47.9 },
+            { date: new Date('2024-08-23T14:25:03+01:00'), xp: 57.1 },
+            { date: new Date('2024-08-28T11:02:28+01:00'), xp: 57.15 },
+            { date: new Date('2024-08-28T11:17:11+01:00'), xp: 57.25 },
+            { date: new Date('2024-08-28T11:29:23+01:00'), xp: 57.4 },
+            { date: new Date('2024-08-28T13:31:53+01:00'), xp: 57.6 },
+            { date: new Date('2024-08-28T13:44:07+01:00'), xp: 57.85 },
+            { date: new Date('2024-09-06T15:53:35+01:00'), xp: 67.05 },
+            { date: new Date('2024-09-07T14:12:18+01:00'), xp: 73.175 },
+            { date: new Date('2024-09-09T14:11:16+01:00'), xp: 97.675 },
+            { date: new Date('2024-09-12T18:48:47+01:00'), xp: 109.925 },
+            { date: new Date('2024-09-18T11:38:06+01:00'), xp: 119.925 },
+            { date: new Date('2024-09-25T17:58:46+01:00'), xp: 132.175 },
+            { date: new Date('2024-09-27T15:53:26+01:00'), xp: 137.175 },
+            { date: new Date('2024-09-28T15:58:01+01:00'), xp: 147.175 },
+            { date: new Date('2024-12-02T11:27:00+01:00'), xp: 181.55 },
+            { date: new Date('2024-12-19T18:18:47+01:00'), xp: 257.8 },
+            { date: new Date('2025-01-23T16:57:08+01:00'), xp: 327.8 },
+            { date: new Date('2025-02-11T16:58:21+01:00'), xp: 474.8 },
+            { date: new Date('2025-02-20T17:06:59+01:00'), xp: 523.8 },
+            { date: new Date('2025-02-26T17:23:43Z'), xp: 572.8 },
+            { date: new Date('2025-03-21T17:41:45Z'), xp: 676.3 }
+        ];
+
+        // Initialize the chart
+        function initChart() {
+            const svg = document.getElementById('xpChart');
+            const tooltip = document.getElementById('tooltip');
+
+            // Clear previous elements
+            svg.innerHTML = '';
+
+            // Get dimensions
+            const width = 800;
+            const height = 500;
+            const margin = { top: 40, right: 40, bottom: 60, left: 60 };
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+
+            // Create group for chart elements
+            const chartGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            chartGroup.setAttribute('transform', `translate(${margin.left}, ${margin.top})`);
+
+            // Calculate scales
+            const dateExtent = [
+                xpData[0].date,
+                xpData[xpData.length - 1].date
+            ];
+            const xpExtent = [0, Math.max(...xpData.map(d => d.xp))];
+
+            const xScale = (date) => {
+                return ((date - dateExtent[0]) / (dateExtent[1] - dateExtent[0])) * chartWidth;
+            };
+
+            const yScale = (xp) => {
+                return chartHeight - (xp / xpExtent[1]) * chartHeight;
+            };
+
+            // Draw axes
+            const drawAxes = () => {
+                // X-axis (time)
+                const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                xAxis.setAttribute('x1', 0);
+                xAxis.setAttribute('y1', chartHeight);
+                xAxis.setAttribute('x2', chartWidth);
+                xAxis.setAttribute('y2', chartHeight);
+                xAxis.setAttribute('class', 'axis');
+                chartGroup.appendChild(xAxis);
+
+                // Y-axis (XP)
+                const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                yAxis.setAttribute('x1', 0);
+                yAxis.setAttribute('y1', 0);
+                yAxis.setAttribute('x2', 0);
+                yAxis.setAttribute('y2', chartHeight);
+                yAxis.setAttribute('class', 'axis');
+                chartGroup.appendChild(yAxis);
+
+                // Add ticks and labels for X-axis
+                const monthTicks = 6; // Number of ticks to show
+                for (let i = 0; i <= monthTicks; i++) {
+                    const date = new Date(
+                        dateExtent[0].getTime() +
+                        (i / monthTicks) * (dateExtent[1] - dateExtent[0])
+                    );
+
+                    // Tick line
+                    const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    tick.setAttribute('x1', xScale(date));
+                    tick.setAttribute('y1', chartHeight);
+                    tick.setAttribute('x2', xScale(date));
+                    tick.setAttribute('y2', chartHeight + 5);
+                    tick.setAttribute('class', 'tick');
+                    chartGroup.appendChild(tick);
+
+                    // Tick label
+                    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    label.setAttribute('x', xScale(date));
+                    label.setAttribute('y', chartHeight + 20);
+                    label.setAttribute('class', 'tick-text');
+                    label.setAttribute('text-anchor', 'middle');
+                    label.textContent = date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        year: '2-digit'
+                    });
+                    chartGroup.appendChild(label);
+                }
+
+                // Add ticks and labels for Y-axis
+                const yTicks = 5;
+                for (let i = 0; i <= yTicks; i++) {
+                    const xpValue = (i / yTicks) * xpExtent[1];
+
+                    // Tick line
+                    const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    tick.setAttribute('x1', -5);
+                    tick.setAttribute('y1', yScale(xpValue));
+                    tick.setAttribute('x2', 0);
+                    tick.setAttribute('y2', yScale(xpValue));
+                    tick.setAttribute('class', 'tick');
+                    chartGroup.appendChild(tick);
+
+                    // Tick label
+                    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    label.setAttribute('x', -10);
+                    label.setAttribute('y', yScale(xpValue) + 4);
+                    label.setAttribute('class', 'tick-text');
+                    label.setAttribute('text-anchor', 'end');
+                    label.textContent = Math.round(xpValue);
+                    chartGroup.appendChild(label);
+                }
+            };
+
+            // Draw trend line
+            const drawTrendLine = () => {
+                let pathData = '';
+
+                xpData.forEach((d, i) => {
+                    const x = xScale(d.date);
+                    const y = yScale(d.xp);
+
+                    if (i === 0) {
+                        pathData += `M ${x} ${y}`;
+                    } else {
+                        pathData += ` L ${x} ${y}`;
+                    }
+                });
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('class', 'trend-line');
+                chartGroup.appendChild(path);
+            };
+
+            // Draw data points
+            const drawDataPoints = () => {
+                xpData.forEach(d => {
+                    const x = xScale(d.date);
+                    const y = yScale(d.xp);
+
+                    // Create circle
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', x);
+                    circle.setAttribute('cy', y);
+                    circle.setAttribute('r', 4);
+                    circle.setAttribute('class', 'data-point');
+                    circle.setAttribute('data-xp', d.xp);
+                    circle.setAttribute('data-date', d.date.toLocaleDateString());
+
+                    // Add interactivity
+                    circle.addEventListener('mouseover', (e) => {
+                        circle.setAttribute('r', 3);
+                        tooltip.style.opacity = 1;
+                        tooltip.innerHTML = `
+                            <strong>${d.date.toLocaleDateString()}</strong><br>
+                            XP: ${d.xp.toFixed(2)}
+                        `;
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY - 20}px`;
+                    });
+
+                    circle.addEventListener('mouseout', () => {
+                        circle.setAttribute('r', 3); z
+                        tooltip.style.opacity = 0;
+                    });
+
+                    chartGroup.appendChild(circle);
+                });
+            };
+
+            // Add axis labels
+            const addLabels = () => {
+                // X-axis label
+                const xLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                xLabel.setAttribute('x', chartWidth / 2);
+                xLabel.setAttribute('y', chartHeight + 40);
+                xLabel.setAttribute('class', 'tick-text');
+                xLabel.setAttribute('text-anchor', 'middle');
+                xLabel.textContent = 'Date';
+                chartGroup.appendChild(xLabel);
+
+                // Y-axis label
+                const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                yLabel.setAttribute('x', -chartHeight / 2);
+                yLabel.setAttribute('y', -40);
+                yLabel.setAttribute('class', 'tick-text');
+                yLabel.setAttribute('text-anchor', 'middle');
+                yLabel.setAttribute('transform', 'rotate(-90)');
+                yLabel.textContent = 'XP Earned';
+                chartGroup.appendChild(yLabel);
+            };
+
+            // Build the chart
+            drawAxes();
+            drawTrendLine();
+            drawDataPoints();
+            addLabels();
+
+            // Add chart group to SVG
+            svg.appendChild(chartGroup);
+        }
+
+        // Initialize and make responsive
+        initChart();
+
+        // Handle window resize
+        window.addEventListener('resize', initChart);
+    </script>
+</body>
+
+</html>
