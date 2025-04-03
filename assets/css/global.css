@@ -841,7 +841,7 @@ footer a:hover {
 .xp-graph-container {
     font-family: Arial, sans-serif;
     max-width: 800px;
-    margin: 20px auto;
+    /* margin: 20px auto; */
 }
 
 .graph-area {
