@@ -109,12 +109,12 @@ const xp_tracker = () => {
     const container = document.querySelector('.graph-area')
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     svg.setAttribute('id', 'xpChart')
-    svg.setAttribute('viewBox', '0 0 800 500')
+    svg.setAttribute('viewBox', '0 0 1200 700')
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
     container.appendChild(svg)
 
-    setting.width = 800
-    setting.height = 500
+    setting.width = 1200
+    setting.height = 700
     setting.margin = { top: 30, right: 40, bottom: 50, left: 60 }
     setting.charWidth = setting.width - setting.margin.left - setting.margin.right
     setting.chartHeight = setting.height - setting.margin.top - setting.margin.bottom
@@ -390,8 +390,8 @@ const radar_chart = () => {
         const angle = index * angleStep - Math.PI / 2;
         const x = maxRadius * Math.cos(angle);
         const y = maxRadius * Math.sin(angle);
-        const labelX = (maxRadius + 21) * Math.cos(angle); // Offset for label
-        const labelY = (maxRadius + 21) * Math.sin(angle);
+        const labelX = (maxRadius + 22) * Math.cos(angle); // Offset for label
+        const labelY = (maxRadius + 22) * Math.sin(angle);
 
         // Draw axis
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
