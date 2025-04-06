@@ -479,10 +479,25 @@ footer a:hover {
 }
 
 /* ---------section style--------- */
+h3 {
+    font-size: 1.6rem;
+}
 
 .wlcom-section {
     color: #fff;
     font-size: 2rem;
+    font-weight: bolder;
+    padding-bottom: 13px;
+}
+
+.analytics text {
+    font-size: 1.5rem;
+}
+
+.statistics text {
+    /* color: red; */
+    font-size: 1rem;
+
 }
 
 /* ---------buttons style--------- */
@@ -534,7 +549,7 @@ footer a:hover {
     border-radius: 12px;
     padding: 20px;
     flex: 1;
-    min-width: 300px;
+    min-width: 350px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: #272529;
 }
@@ -672,6 +687,14 @@ footer a:hover {
 }
 
 /* Statistics Card */
+.statistics {
+    max-height: 32rem;
+}
+
+.statistics svg {
+    width: auto;
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

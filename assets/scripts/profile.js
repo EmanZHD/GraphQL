@@ -265,7 +265,7 @@ const bar_graph = () => {
         tickLabel.setAttribute("x", x);
         tickLabel.setAttribute("y", chartHeight + 30);
         tickLabel.setAttribute("fill", "black");
-        tickLabel.setAttribute("font-size", fontSize);
+        // tickLabel.setAttribute("font-size", fontSize);
         tickLabel.setAttribute("text-anchor", "middle");
         tickLabel.textContent = `${percentage}%`;
         chartGroup.appendChild(tickLabel);
@@ -297,7 +297,7 @@ const bar_graph = () => {
         label.setAttribute("x", -10);
         label.setAttribute("y", y + barHeight / 2);
         label.setAttribute("fill", "black");
-        label.setAttribute("font-size", fontSize);
+        // label.setAttribute("font-size", fontSize);
         label.setAttribute("text-anchor", "end");
         label.setAttribute("dominant-baseline", "middle");
         label.textContent = item.name;
@@ -323,7 +323,7 @@ const bar_graph = () => {
         percentageText.setAttribute("x", barLength + 20); // Position in front of the bar
         percentageText.setAttribute("y", y + barHeight / 2); // Slightly above the value
         percentageText.setAttribute("fill", "black");
-        percentageText.setAttribute("font-size", fontSize);
+        // percentageText.setAttribute("font-size", fontSize);
         percentageText.setAttribute("text-anchor", "start");
         percentageText.setAttribute("dominant-baseline", "middle");
         percentageText.textContent = `${percentage}%`;
@@ -390,8 +390,8 @@ const radar_chart = () => {
         const angle = index * angleStep - Math.PI / 2;
         const x = maxRadius * Math.cos(angle);
         const y = maxRadius * Math.sin(angle);
-        const labelX = (maxRadius + 30) * Math.cos(angle); // Offset for label
-        const labelY = (maxRadius + 30) * Math.sin(angle);
+        const labelX = (maxRadius + 21) * Math.cos(angle); // Offset for label
+        const labelY = (maxRadius + 21) * Math.sin(angle);
 
         // Draw axis
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -408,7 +408,7 @@ const radar_chart = () => {
         text.setAttribute("x", labelX);
         text.setAttribute("y", labelY);
         text.setAttribute("fill", "black");
-        text.setAttribute("font-size", "14");
+        // text.setAttribute("font-size", "14");
         text.setAttribute("text-anchor", "middle");
         text.setAttribute("dominant-baseline", "middle");
         text.textContent = item.name;
