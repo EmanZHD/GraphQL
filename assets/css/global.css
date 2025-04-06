@@ -500,6 +500,11 @@ h3 {
 
 }
 
+.graph-area text {
+    font-size: 1.5rem;
+
+}
+
 /* ---------buttons style--------- */
 .profile button {
     border: none;
