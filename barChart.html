@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Bar Graph with Percentage on Focus</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            /* Dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 800px;
+            /* Maximum width for larger screens */
+            height: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            background-color: #1a1a1a;
+        }
+
+        /* Hide values and percentages by default */
+        .value-text,
+        .percentage-text {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Adjust for smaller screens */
+        @media (max-width: 600px) {
+            .svg-container {
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .svg-container {
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="svg-container">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <g id="bar-chart"></g>
+        </svg>
+    </div>
+
+    <script>
+        // Data for the bar graph
+        const data = [
+            { name: "ai", value: 5 },
+            { name: "algo", value: 38 },
+            { name: "back-end", value: 40 },
+            { name: "front-end", value: 45 },
+            { name: "game", value: 15 },
+            { name: "prog", value: 50 },
+            { name: "stats", value: 25 },
+            { name: "sys-admin", value: 5 },
+            { name: "tcp", value: 30 }
+        ];
+
+        const svg = document.querySelector("svg");
+        const chartGroup = document.getElementById("bar-chart");
+
+        // Get SVG dimensions from viewBox
+        const viewBox = svg.getAttribute("viewBox").split(" ").map(Number);
+        const svgWidth = viewBox[2];
+        const svgHeight = viewBox[3];
+
+        // Chart dimensions and margins
+        const margin = { top: 20, right: 50, bottom: 40, left: 100 }; // Extra bottom margin for x-axis labels
+        const chartWidth = svgWidth - margin.left - margin.right;
+        const chartHeight = svgHeight - margin.top - margin.bottom;
+
+        // Translate the chart group to account for margins
+        chartGroup.setAttribute("transform", `translate(${margin.left}, ${margin.top})`);
+
+        // Calculate bar height and spacing
+        const numBars = data.length;
+        const barHeight = chartHeight / numBars * 0.6; // 60% of the available space per bar
+        const barSpacing = chartHeight / numBars * 0.4; // 40% spacing between bars
+        const maxScaleValue = 100; // Treat values as out of 100 for percentage scaling
+
+        // Dynamic font size based on SVG size
+        const fontSize = Math.min(svgWidth, svgHeight) * 0.03;
+
+        // Scale for bar lengths (100% = maxScaleValue = 100)
+        const maxBarLength = chartWidth * 0.8; // 80% of chart width for the longest bar
+        const scale = maxBarLength / maxScaleValue; // Scale factor: 1% = scale pixels
+
+        // Draw x-axis with percentage scale
+        const numTicks = 5; // Number of ticks (0%, 25%, 50%, 75%, 100%)
+        for (let i = 0; i <= numTicks; i++) {
+            const percentage = (i / numTicks) * 100; // Percentage (0, 25, 50, 75, 100)
+            const x = (percentage / 100) * maxBarLength; // Position on the x-axis
+
+            // Draw tick mark
+            const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            tick.setAttribute("x1", x);
+            tick.setAttribute("y1", chartHeight);
+            tick.setAttribute("x2", x);
+            tick.setAttribute("y2", chartHeight + 10);
+            tick.setAttribute("stroke", "#444");
+            tick.setAttribute("stroke-width", "1");
+            chartGroup.appendChild(tick);
+
+            // Draw percentage label
+            const tickLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            tickLabel.setAttribute("x", x);
+            tickLabel.setAttribute("y", chartHeight + 30);
+            tickLabel.setAttribute("fill", "#fff");
+            tickLabel.setAttribute("font-size", fontSize);
+            tickLabel.setAttribute("text-anchor", "middle");
+            tickLabel.textContent = `${percentage}%`;
+            chartGroup.appendChild(tickLabel);
+        }
+
+        // Draw bars and labels
+        data.forEach((item, index) => {
+            const y = index * (barHeight + barSpacing);
+            const barLength = (item.value / maxScaleValue) * maxBarLength; // Scale the bar length as a percentage out of 100
+
+            // Create a group for the bar to make it focusable
+            const barGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            barGroup.setAttribute("class", `bar-group bar-group-${index}`);
+            barGroup.setAttribute("tabindex", "0"); // Make the group focusable
+            chartGroup.appendChild(barGroup);
+
+            // Draw bar inside the group
+            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("class", "bar");
+            rect.setAttribute("x", 0);
+            rect.setAttribute("y", y);
+            rect.setAttribute("width", barLength);
+            rect.setAttribute("height", barHeight);
+            rect.setAttribute("fill", "purple");
+            barGroup.appendChild(rect);
+
+            // Draw category label (on the left)
+            const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            label.setAttribute("x", -10);
+            label.setAttribute("y", y + barHeight / 2);
+            label.setAttribute("fill", "#fff");
+            label.setAttribute("font-size", fontSize);
+            label.setAttribute("text-anchor", "end");
+            label.setAttribute("dominant-baseline", "middle");
+            label.textContent = item.name;
+            chartGroup.appendChild(label);
+
+            // Draw value (hidden by default, shown on hover)
+            // const value = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            // value.setAttribute("class", `value-text value-${index}`); // Unique class for each value
+            // value.setAttribute("x", barLength + 20);
+            // value.setAttribute("y", y + barHeight / 2);
+            // value.setAttribute("fill", "#fff");
+            // value.setAttribute("font-size", fontSize);
+            // value.setAttribute("text-anchor", "start");
+            // value.setAttribute("dominant-baseline", "middle");
+            // value.textContent = item.value;
+            // chartGroup.appendChild(value);
+
+            // Draw percentage (hidden by default, shown on focus)
+            const percentage = (item.value / maxScaleValue) * 100; // Calculate percentage out of 100
+            const percentageText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            percentageText.setAttribute("class", `percentage-text percentage-${index}`); // Unique class for each percentage
+            percentageText.setAttribute("x", barLength + 20); // Position in front of the bar
+            percentageText.setAttribute("y", y + barHeight / 2 - fontSize); // Slightly above the value
+            percentageText.setAttribute("fill", "#fff");
+            percentageText.setAttribute("font-size", fontSize);
+            percentageText.setAttribute("text-anchor", "start");
+            percentageText.setAttribute("dominant-baseline", "middle");
+            percentageText.textContent = `${percentage}%`;
+            chartGroup.appendChild(percentageText);
+
+            barGroup.addEventListener("mouseover", () => {
+                console.log('here', barGroup)
+                document.querySelector(`.percentage-${index}`).style.opacity = 1
+            })
+            barGroup.addEventListener("mouseout", () => {
+                console.log('here', barGroup)
+                document.querySelector(`.percentage-${index}`).style.opacity = 0
+            })
+
+        })
+
+        // Draw x-axis line
+        const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        xAxis.setAttribute("x1", 0);
+        xAxis.setAttribute("y1", chartHeight);
+        xAxis.setAttribute("x2", chartWidth);
+        xAxis.setAttribute("y2", chartHeight);
+        xAxis.setAttribute("stroke", "#444");
+        xAxis.setAttribute("stroke-width", "1");
+        chartGroup.appendChild(xAxis);
+
+        // Draw y-axis line
+        const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        yAxis.setAttribute("x1", 0);
+        yAxis.setAttribute("y1", 0);
+        yAxis.setAttribute("x2", 0);
+        yAxis.setAttribute("y2", chartHeight);
+        yAxis.setAttribute("stroke", "#444");
+        yAxis.setAttribute("stroke-width", "1");
+        chartGroup.appendChild(yAxis);
+    </script>
+</body>
+
+</html>

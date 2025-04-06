@@ -147,15 +147,13 @@ export const buildDashboard = () => {
         <!-- Analytics Card -->
         <div class="dashboard-card analytics">
           <h3>Technical skills</h3>
-          <div class="analytics-item">
-            <span class="highlight">38%</span>
-            <span class="trend-up">71 + 16%</span>
-          </div>
-          <div class="analytics-item">
-            <h4>Total expenses</h4>
-            <span class="amount">$1,050</span>
-          </div>
-          <table class="expenses-table">
+
+        <div class="svg-container">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <g id="bar-chart"></g>
+        </svg>
+    </div>
+          <!--<table class="expenses-table">
             <tr>
               <td>Home</td>
               <td>$250</td>
@@ -176,13 +174,24 @@ export const buildDashboard = () => {
               <td>Beauty</td>
               <td>$115</td>
             </tr>
-          </table>
+          </table> -->
         </div>
         
         <!-- Statistics Card -->
         <div class="dashboard-card statistics">
           <h3>Technologies</h3>
-          <div class="stats-grid">
+              <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Define the center and radius -->
+        <g transform="translate(250, 250)" id="radar-chart">
+            <!-- Background circles (for reference, like in the image) -->
+            <circle cx="0" cy="0" r="40" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="80" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="120" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="160" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="200" fill="none" stroke="#444" stroke-width="1" />
+        </g>
+    </svg>
+          <!--<div class="stats-grid">
             <div class="stat-item">
               <span class="stat-value">$10,000</span>
               <div class="stat-bar" style="height: 80%"></div>
@@ -211,7 +220,7 @@ export const buildDashboard = () => {
               <div class="progress-fill" style="width: 89%"></div>
             </div>
             <span class="progress-percent">89%</span>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

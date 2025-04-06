@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Chart</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            /* Dark background to match the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        svg {
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Define the center and radius -->
+        <g transform="translate(250, 250)" id="radar-chart">
+            <!-- Background circles (for reference, like in the image) -->
+            <circle cx="0" cy="0" r="40" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="80" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="120" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="160" fill="none" stroke="#444" stroke-width="1" />
+            <circle cx="0" cy="0" r="200" fill="none" stroke="#444" stroke-width="1" />
+        </g>
+    </svg>
+
+    <script>
+        // Data for the chart
+        const data = [
+            { name: "CSS", value: 55 },
+            { name: "Docker", value: 15 },
+            { name: "Go", value: 52 },
+            { name: "HTML", value: 55 },
+            { name: "JS", value: 90 },
+            { name: "SQL", value: 25 },
+            { name: "Unix", value: 15 }
+        ];
+
+        const numAxes = data.length;
+        const maxRadius = 200; // Maximum radius for 100%
+        const angleStep = (2 * Math.PI) / numAxes; // Angle between axes
+        const chartGroup = document.getElementById("radar-chart");
+
+        // Calculate points for the polygon
+        let points = [];
+        data.forEach((item, index) => {
+            const angle = index * angleStep - Math.PI / 2; // Start from the top (subtract 90 degrees)
+            const radius = (item.value / 100) * maxRadius; // Scale the value to the radius
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            points.push(`${x},${y}`);
+        });
+
+        // Draw the axes and labels
+        data.forEach((item, index) => {
+            const angle = index * angleStep - Math.PI / 2;
+            const x = maxRadius * Math.cos(angle);
+            const y = maxRadius * Math.sin(angle);
+            const labelX = (maxRadius + 30) * Math.cos(angle); // Offset for label
+            const labelY = (maxRadius + 30) * Math.sin(angle);
+
+            // Draw axis
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", "0");
+            line.setAttribute("y1", "0");
+            line.setAttribute("x2", x);
+            line.setAttribute("y2", y);
+            line.setAttribute("stroke", "#444");
+            line.setAttribute("stroke-width", "1");
+            chartGroup.appendChild(line);
+
+            // Draw label
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", labelX);
+            text.setAttribute("y", labelY);
+            text.setAttribute("fill", "#fff");
+            text.setAttribute("font-size", "14");
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("dominant-baseline", "middle");
+            text.textContent = item.name;
+            chartGroup.appendChild(text);
+        });
+
+        // Draw the data polygon
+        const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        polygon.setAttribute("points", points.join(" "));
+        polygon.setAttribute("fill", "rgba(128, 0, 128, 0.5)"); // Purple fill with transparency
+        polygon.setAttribute("stroke", "purple");
+        polygon.setAttribute("stroke-width", "2");
+        chartGroup.appendChild(polygon);
+    </script>
+</body>
+
+</html>
