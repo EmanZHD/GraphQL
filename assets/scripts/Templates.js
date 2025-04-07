@@ -54,54 +54,54 @@ export const logo_templ = `
 `
 
 export const injectNav = () => {
-  const gridContainer = document.querySelector('.grid-container')
-  const main = document.querySelector('main')
-  const nav = document.createElement('nav')
-  nav.innerHTML = `<div class="nav-left">
+    const gridContainer = document.querySelector('.grid-container')
+    const main = document.querySelector('main')
+    const nav = document.createElement('nav')
+    nav.innerHTML = `<div class="nav-left">
     <button class="nav-home"><img src="assets/img/logo.png" alt="">-Oujda</button>
     <button class="nav-about">Gitea</button>
     </div>
     <div class="nav-right">
     <button class="nav-log">Log Out</button>
     </div>`
-  gridContainer.insertBefore(nav, main)
+    gridContainer.insertBefore(nav, main)
 }
 
 const stat = [
-  { type: 'total', label: 'TOTAL XP', value: '676.3 KB' },
-  { type: 'audit', label: 'Audit Ratio', value: '1.5' },
-  { type: 'project', label: 'PROJECTS', value: '28' },
-  { type: 'level', label: 'LEVEL', value: '25' }
+    { type: 'total', label: 'TOTAL XP', value: '676.3 KB' },
+    { type: 'audit', label: 'Audit Ratio', value: '1.5' },
+    { type: 'project', label: 'PROJECTS', value: '28' },
+    { type: 'level', label: 'LEVEL', value: '25' }
 ]
 
 export const createStatsCard = () => {
-  const dashboardRows = document.querySelectorAll('.dashboard-row')
-  const card = document.createElement('div')
-  card.className = `dashboard-card user-stats`
-  stat.forEach(elem => {
-    const section = document.createElement('div')
-    section.className = `section ${elem.type}`
+    const dashboardRows = document.querySelectorAll('.dashboard-row')
+    const card = document.createElement('div')
+    card.className = `dashboard-card user-stats`
+    stat.forEach(elem => {
+        const section = document.createElement('div')
+        section.className = `section ${elem.type}`
 
-    const content = document.createElement('div')
-    content.className = 'content'
+        const content = document.createElement('div')
+        content.className = 'content'
 
-    const label = document.createElement('strong')
-    label.textContent = elem.label
+        const label = document.createElement('strong')
+        label.textContent = elem.label
 
-    const value = document.createElement('span')
-    // value.textContent = elem.value
+        const value = document.createElement('span')
+        // value.textContent = elem.value
 
-    content.append(label)
-    content.append(value)
-    section.append(content)
-    card.append(section)
-  })
-  dashboardRows[0].prepend(card)
+        content.append(label)
+        content.append(value)
+        section.append(content)
+        card.append(section)
+    })
+    dashboardRows[0].prepend(card)
 }
 
 export const buildDashboard = () => {
-  const main = document.querySelector('.profile main')
-  main.innerHTML = `
+    const main = document.querySelector('.profile main')
+    main.innerHTML = `
     <div class="wlcom-section"></div>
     <div class="dashboard">
         <!-- 1st Row -->
@@ -140,9 +140,9 @@ export const buildDashboard = () => {
             <!-- Statistics Card -->
             <div class="dashboard-card statistics">
                 <h3>Technologies</h3>
-                <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+                <svg style="overflow: visible;" width="60%" height="60%" viewBox="-200 -200 400 400" class="mv6-01 pb7-01" xmlns="http://www.w3.org/2000/svg">
                     <!-- Define the center and radius -->
-                    <g transform="translate(250, 250)" id="radar-chart">
+                    <g id="radar-chart">
                         <!-- Background circles (for reference, like in the image) -->
                         <!--<circle cx="0" cy="0" r="40" fill="none" stroke="#444" stroke-width="1" />
                         <circle cx="0" cy="0" r="80" fill="none" stroke="#444" stroke-width="1" />
@@ -157,19 +157,19 @@ export const buildDashboard = () => {
     </div>
   `
 
-  // Call this after login success or when building the dashboard
-  generateChartBars()
+    // Call this after login success or when building the dashboard
+    generateChartBars()
 }
 
 // Helper function to generate random chart bars
 const generateChartBars = () => {
-  // const barsContainer = document.querySelector('.chart-bars')
-  // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-  // const heights = [85, 60, 75, 40, 65, 30, 50] // percentages
+    // const barsContainer = document.querySelector('.chart-bars')
+    // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+    // const heights = [85, 60, 75, 40, 65, 30, 50] // percentages
 
-  // barsContainer.innerHTML = days.map((day, i) =>
-  //   `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
-  // ).join('')
+    // barsContainer.innerHTML = days.map((day, i) =>
+    //   `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
+    // ).join('')
 }
 
 

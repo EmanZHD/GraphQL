@@ -329,7 +329,7 @@ const radar_chart = () => {
         value
     }))
     const numAxes = data.length
-    const maxRadius = 200 // Maximum radius for 100%
+    const maxRadius = 180 // Maximum radius for 100%
     const angleStep = (2 * Math.PI) / numAxes // Angle between axes
     const chartGroup = document.querySelector(".statistics #radar-chart")
 
