@@ -303,7 +303,25 @@ const bar_graph = () => {
     chartGroup.appendChild(yAxis);
 
 }
-
+const Draw_circles = (elem) => {
+    let i = 0;
+    const p = 40
+    while (i < 9) {
+        // let radius = 80 + i * 40
+        let radius = 20 + i * 20
+        console.log("Iteration:", i)
+        let e = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+        e.setAttribute('cx', '0')
+        e.setAttribute('cy', '0')
+        e.setAttribute('r', `${radius}`)
+        e.setAttribute('fill', 'none')
+        e.setAttribute('stroke', '#444')
+        e.setAttribute('stroke-width', '1')
+        elem.appendChild(e)
+        radius += p
+        i++
+    }
+}
 // ----------------- radar_chart func-----------------
 const radar_chart = () => {
     const data = Object.entries(info.remainingSkills).map(([name, value]) => ({
@@ -315,6 +333,7 @@ const radar_chart = () => {
     const angleStep = (2 * Math.PI) / numAxes // Angle between axes
     const chartGroup = document.querySelector(".statistics #radar-chart")
 
+    Draw_circles(chartGroup)
     // Calculate points for the polygon
     let points = []
     data.forEach((item, index) => {
