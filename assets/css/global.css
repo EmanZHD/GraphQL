@@ -839,10 +839,15 @@ h3 {
     background: rgba(156, 39, 176, 0.15);
 }
 
+.dashboard-card.user-stats {
+    /* max-height: 10%; */
+    min-width: 51%;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .dashboard-card.user-stats {
-        flex-direction: column;
+        /* flex-direction: column; */
         height: auto;
     }
 
