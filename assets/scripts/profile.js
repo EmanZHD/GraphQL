@@ -33,20 +33,20 @@ const count_XP = () => {
 
 // -------------- DrawAxes func --------------
 const DrawAxes = (chartGroup) => {
-    const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    xAxis.setAttribute('x1', 0);
-    xAxis.setAttribute('y1', setting.chartHeight);
-    xAxis.setAttribute('x2', setting.charWidth);
-    xAxis.setAttribute('y2', setting.chartHeight);
-    xAxis.setAttribute('class', 'axis');
+    const xAxis = createLIne(0, setting.charWidth, setting.chartHeight, setting.chartHeight)
+    // xAxis.setAttribute('x1', 0);
+    // xAxis.setAttribute('y1', setting.chartHeight);
+    // xAxis.setAttribute('x2', setting.charWidth);
+    // xAxis.setAttribute('y2', setting.chartHeight);
+    // xAxis.setAttribute('class', 'axis');
     chartGroup.appendChild(xAxis);
 
-    const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    yAxis.setAttribute('x1', 0);
-    yAxis.setAttribute('y1', 0);
-    yAxis.setAttribute('x2', 0);
-    yAxis.setAttribute('y2', setting.chartHeight);
-    yAxis.setAttribute('class', 'axis');
+    const yAxis = createLIne(0, 0, 0, setting.chartHeight)
+    // yAxis.setAttribute('x1', 0);
+    // yAxis.setAttribute('y1', 0);
+    // yAxis.setAttribute('x2', 0);
+    // yAxis.setAttribute('y2', setting.chartHeight);
+    // yAxis.setAttribute('class', 'axis');
     chartGroup.appendChild(yAxis);
 }
 

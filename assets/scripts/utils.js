@@ -55,7 +55,6 @@ const loading_Home = () => {
 // ----------------- loading_Error func-----------------
 const loading_Error = (err) => {
     main.innerHTML = `Ooops, ERROR in ${err}`
-    // main.innerHTML = `Your session has ended for security reasons. Please log out to sign in again to resume`
 }
 // ----------------- loading_LOgin func-----------------
 const loading_LOgin = () => {
