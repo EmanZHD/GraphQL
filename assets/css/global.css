@@ -763,13 +763,13 @@ h3 {
 
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
-    .dashboard {
+    /* .dashboard {
         flex-direction: column;
-    }
+    } */
 
-    .stats-grid {
+    /* .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
+    } */
 }
 
 @media (max-width: 768px) {
@@ -784,7 +784,12 @@ h3 {
 
 
 
+@media (max-width: 900px) {
+    .dashboard {
+        flex-direction: column;
+    }
 
+}
 
 
 
