@@ -763,8 +763,8 @@ h3 {
 
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
-    .dashboard-row {
-        /* flex-direction: column; */
+    .dashboard {
+        flex-direction: column;
     }
 
     .stats-grid {
@@ -792,7 +792,12 @@ h3 {
     display: flex;
     /* height: 100%; */
     padding: 0;
+    max-height: 20%;
+    min-width: 55%;
+    /* max-height: 14%;
+    min-width: 66%; */
 }
+
 
 .user-stats .section {
     flex: 1;
@@ -839,16 +844,11 @@ h3 {
     background: rgba(156, 39, 176, 0.15);
 }
 
-.dashboard-card.user-stats {
-    /* max-height: 10%; */
-    min-width: 51%;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .dashboard-card.user-stats {
         /* flex-direction: column; */
-        height: auto;
+        /* height: auto; */
     }
 
     .user-stats .section {
@@ -1012,3 +1012,7 @@ svg {
     font-size: 1.3rem;
     fill: #000000;
 }
+
+
+
+/* /////////////////////////////////////////// */
