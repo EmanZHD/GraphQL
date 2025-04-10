@@ -494,6 +494,10 @@ h3 {
     font-size: 1.5rem;
 }
 
+.analytics {
+    max-width: 71%;
+}
+
 .statistics text {
     /* color: red; */
     font-size: 1rem;
@@ -694,6 +698,7 @@ h3 {
 /* Statistics Card */
 .statistics {
     max-height: 32rem;
+    max-width: 72%;
 }
 
 .statistics svg {
@@ -791,6 +796,17 @@ h3 {
 
 }
 
+/* @media (max-width: 816px) {
+    .statistics svg {
+        width: 100%;
+    }
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+
+} */
 
 
 .dashboard-card.user-stats {
