@@ -84,7 +84,6 @@ export const routing = (template) => {
 
 // ----------------- displayERror func-----------------
 export const displayERror = (error) => {
-    console.log('test error', error)
     document.getElementById('identifier').value = '';
     document.getElementById('password').value = '';
     const loginForm = document.querySelector('#login-form')

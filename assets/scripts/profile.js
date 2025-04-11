@@ -34,19 +34,9 @@ const count_XP = () => {
 // -------------- DrawAxes func --------------
 const DrawAxes = (chartGroup) => {
     const xAxis = createLIne(0, setting.charWidth, setting.chartHeight, setting.chartHeight)
-    // xAxis.setAttribute('x1', 0);
-    // xAxis.setAttribute('y1', setting.chartHeight);
-    // xAxis.setAttribute('x2', setting.charWidth);
-    // xAxis.setAttribute('y2', setting.chartHeight);
-    // xAxis.setAttribute('class', 'axis');
     chartGroup.appendChild(xAxis);
 
     const yAxis = createLIne(0, 0, 0, setting.chartHeight)
-    // yAxis.setAttribute('x1', 0);
-    // yAxis.setAttribute('y1', 0);
-    // yAxis.setAttribute('x2', 0);
-    // yAxis.setAttribute('y2', setting.chartHeight);
-    // yAxis.setAttribute('class', 'axis');
     chartGroup.appendChild(yAxis);
 }
 
@@ -56,15 +46,16 @@ const build_pointChart = () => {
 
 // ----------------- xp_tracker func-----------------
 const xp_tracker = () => {
+    const points = []
     let accumulator = 0
     info.transaction.filter((elem) => elem.type === 'xp' && elem.event.object.type === "module")
         .forEach(elem => {
+            console.log('elem=> ', elem)
             XP_Progress[elem.createdAt] = elem.amount
-            // console.log('eee', elem.createdAt, elem.amount)
         })
-    // console.log('xppp', XP_Progress, Object.values(XP_Progress))
     const trackerXP = Object.entries(XP_Progress)
         .map(([key, value]) => {
+            points.push(value)
             accumulator += value
             return {
                 date: new Date(key),
@@ -72,6 +63,9 @@ const xp_tracker = () => {
             };
         })
     // .sort((a, b) => a.date - b.date);
+    info.points = points
+    console.log('here', trackerXP)
+    console.log('points', points)
     // console.log('test=>', trackerXP)
     const container = document.querySelector('.graph-area')
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -127,7 +121,7 @@ const xp_tracker = () => {
     chartGroup.appendChild(path)
 
 
-    trackerXP.forEach(elem => {
+    trackerXP.forEach((elem, i) => {
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         const x = xScale(elem.date)
         const y = yScale(elem.xp)
@@ -136,8 +130,9 @@ const xp_tracker = () => {
         circle.setAttribute('cy', y)
         circle.setAttribute('r', 3)
         circle.setAttribute('class', 'data-point')
+        console.log('------>', info.points[i]);
 
-        toolTip_(circle, elem)
+        toolTip_(circle, elem, info.points[i])
         chartGroup.appendChild(circle)
     })
     DrawAxes(chartGroup)
@@ -155,7 +150,6 @@ const xp_tracker = () => {
 // ----------------- skills_tracker func-----------------
 const skills_tracker = () => {
     const test = info.transaction.filter(elem => {
-        console.log('elem', elem.type)
         return elem.type.startsWith('skill_')
     }).map(elem => ({
         skill: elem.type.replace('skill_', ''),
@@ -164,12 +158,10 @@ const skills_tracker = () => {
         acc[curr.skill] = curr.amount
         return (acc)
     }, {})
-    console.log('test=>', test)
     // { info.technicalSkills, info.remainingSkills } = categorize_SKills(test)
     const result = categorize_SKills(test);
     info.technicalSkills = result.technicalSkills;
     info.remainingSkills = result.remainingSkills;
-    console.log('here', categorize_SKills(test))
 
 }
 
@@ -178,9 +170,6 @@ const bar_graph = () => {
     const container = document.querySelector('.analytics')
     const svg = document.querySelector(".analytics svg");
     const chartGroup = document.querySelector(".analytics #bar-chart");
-    console.log('ddsvg', svg)
-    console.log('ddchartGroup', chartGroup)
-    console.log('here info.technicalSkills', info.technicalSkills)
 
     const data = Object.entries(info.technicalSkills).map(([name, value]) => ({
         name,
@@ -283,12 +272,10 @@ const bar_graph = () => {
         chartGroup.appendChild(percentageText);
 
         barGroup.addEventListener("mouseover", () => {
-            console.log('here', barGroup)
             document.querySelector(`.percentage-${index}`).style.opacity = 1
             barGroup.style.cursor = "pointer"
         })
         barGroup.addEventListener("mouseout", () => {
-            console.log('here', barGroup)
             document.querySelector(`.percentage-${index}`).style.opacity = 0
         })
 
@@ -309,7 +296,6 @@ const Draw_circles = (elem) => {
     while (i < 9) {
         // let radius = 80 + i * 40
         let radius = 20 + i * 20
-        console.log("Iteration:", i)
         let e = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         e.setAttribute('cx', '0')
         e.setAttribute('cy', '0')
@@ -384,7 +370,6 @@ const count_Project = () => {
 // -------------- count_level func --------------
 const count_level = () => {
     info.level = info.transaction.filter((elem) => elem.type === 'level' && elem.event.object.type === "module").length
-    console.log('level=>', info.level)
 }
 
 // -------------- count_ratio func --------------
@@ -447,7 +432,6 @@ export const load_profile = () => {
             }
         }
     }`, (data) => {
-        console.log('data', data)
         info.transaction = data.data.transaction
         count_XP()
         count_Project()
@@ -460,71 +444,3 @@ export const load_profile = () => {
         radar_chart()
     })
 }
-// export const load_profile = () => {
-//     injectNav()
-//     buildDashboard()
-//     createStatsCard()
-//     const tocken = localStorage.getItem('tocken')
-//     const query = `{
-//         user{
-//             lastName
-//             firstName
-//             email
-//             createdAt
-//             discordId
-//         }
-//             }`
-//     fetch(`https://${Domain}/api/graphql-engine/v1/graphql`,
-//         {
-//             method: 'POST',
-//             headers: {
-//                 Authorization: `Bearer ${tocken}`
-//             },
-//             body: JSON.stringify({ query })
-//         }
-//     ).then(response => response.json())
-//         .then(data => {
-//             info.lastname = data.data.user[0].lastName
-//             info.firstname = data.data.user[0].firstName
-//             console.log('testtttt=>', data)
-//             console.log(`username`, data.data.user[0].firstName, info.firstname)
-//             loading_info()
-//         })
-//         .catch(err => routing('error'))
-//     const query_xp = `{
-//         transaction{
-//             createdAt
-//             amount
-//             type
-//             event{
-//                 object{
-//       	            name
-//                     type
-//                 }
-//             }
-//             }
-//     }
-//     `
-//     fetch(`https://${Domain}/api/graphql-engine/v1/graphql`,
-//         {
-//             method: 'POST',
-//             headers: {
-//                 Authorization: `Bearer ${tocken}`
-//             },
-//             body: JSON.stringify({ query: query_xp })
-//         }
-//     ).then(response => response.json())
-//         .then(data => {
-//             info.transaction = data.data.transaction
-//             count_XP()
-//             count_Project()
-//             count_level()
-//             count_ratio()
-//             loading_info()
-//             xp_tracker()
-//             skills_tracker()
-//             bar_graph()
-//             radar_chart()
-//         })
-//         .catch(err => routing('error'))
-// }

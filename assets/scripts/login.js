@@ -35,7 +35,6 @@ export const verifyJWT = async () => {
 
 // -------------- setupLOgin func --------------
 export const setupLOgin = () => {
-    console.log('in setup login')
     const loginForm = document.querySelector('#login-form')
     if (loginForm) {
         loginForm.addEventListener('submit', async (event) => {
@@ -44,8 +43,6 @@ export const setupLOgin = () => {
             credentials.username = formData.get('identifier')
             credentials.passwd = formData.get('password')
 
-            console.log('Identifier:', identifier)
-            console.log('Password:', password)
             if (!credentials.username || !credentials.passwd) {
                 displayERror('Please enter both username and password`')
                 return
@@ -75,10 +72,8 @@ const verifyCredentials = async () => {
 
         if (!response.ok) {
             const errorData = await response.json();
-            console.log('inveri =>', errorData.error)
             displayERror(errorData.error)
             return
-            // throw new Error(errorData.message || 'Invalid credentials');
         }
         const data = await response.json()
         localStorage.setItem('tocken', data)

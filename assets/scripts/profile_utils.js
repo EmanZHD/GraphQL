@@ -8,7 +8,7 @@ export const formatDate = (date) => {
     })
 }
 // ----------------- toolTip_ func-----------------
-export const toolTip_ = (circle, elem) => {
+export const toolTip_ = (circle, elem, xp) => {
     const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "title")
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('text-anchor', 'middle');
@@ -23,7 +23,10 @@ export const toolTip_ = (circle, elem) => {
     const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
     tspan2.setAttribute('x', 0);
     tspan2.setAttribute('dy', 20);
-    tspan2.textContent = `+${elem.xp.toFixed(1)} XP`;
+    xp = xp / 1000
+    tspan2.textContent = `${xp > 1000 ? "+" + xp + " MB" : "+" + xp + " KB"
+        }`
+
 
     text.appendChild(tspan1);
     text.appendChild(tspan2);

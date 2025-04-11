@@ -68,10 +68,10 @@ export const injectNav = () => {
 }
 
 const stat = [
-    { type: 'total', label: 'TOTAL XP', value: '676.3 KB' },
-    { type: 'audit', label: 'Audit Ratio', value: '1.5' },
-    { type: 'project', label: 'PROJECTS', value: '28' },
-    { type: 'level', label: 'LEVEL', value: '25' }
+    { type: 'total', label: 'TOTAL XP', value: '' },
+    { type: 'audit', label: 'Audit Ratio', value: '' },
+    { type: 'project', label: 'PROJECTS', value: '' },
+    { type: 'level', label: 'LEVEL', value: '' }
 ]
 
 export const createStatsCard = () => {

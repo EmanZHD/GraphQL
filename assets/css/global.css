@@ -384,9 +384,13 @@ footer a:hover {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
     .login-welcome p {
         font-size: 0.9rem;
+    }
+
+    .content strong {
+        font-size: 0.5rem;
     }
 }
 
@@ -485,7 +489,7 @@ h3 {
 
 .wlcom-section {
     color: #fff;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bolder;
     padding-bottom: 13px;
 }
@@ -541,7 +545,7 @@ h3 {
     display: flex;
     /* flex-direction: column; */
     gap: 20px;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .dashboard-row {
@@ -789,6 +793,12 @@ h3 {
     }
 }
 
+@media (max-width: 573px) {
+    .wlcom-section {
+        font-size: 1rem;
+    }
+
+}
 
 
 @media (max-width: 900px) {
@@ -878,7 +888,9 @@ h3 {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding: 10px 0px;
-        justify-content: flex-start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .section {
@@ -889,7 +901,7 @@ h3 {
     }
 
     .section span {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 }
 

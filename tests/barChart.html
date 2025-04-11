@@ -190,11 +190,9 @@
             chartGroup.appendChild(percentageText);
 
             barGroup.addEventListener("mouseover", () => {
-                console.log('here', barGroup)
                 document.querySelector(`.percentage-${index}`).style.opacity = 1
             })
             barGroup.addEventListener("mouseout", () => {
-                console.log('here', barGroup)
                 document.querySelector(`.percentage-${index}`).style.opacity = 0
             })
 
