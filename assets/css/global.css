@@ -458,7 +458,7 @@ footer a:hover {
 }
 
 .nav-home img {
-    width: 3.5rem;
+    width: 3rem;
 }
 
 .profile nav {
@@ -474,7 +474,7 @@ footer a:hover {
 
 .nav-left {
     display: flex;
-    gap: 10px;
+    gap: 30px;
 }
 
 .nav-right {
@@ -783,6 +783,12 @@ h3 {
     }
 }
 
+@media (max-width: 1700px) {
+    svg {
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .dashboard-card {
         min-width: 100%;
@@ -913,7 +919,7 @@ h3 {
 }
 
 .graph-area {
-    height: 350px;
+    /* height: 350px; */
     border: 1px solid #ddd;
     /* position: relative; */
     overflow-x: auto;
