@@ -7,6 +7,28 @@ export const formatDate = (date) => {
         day: 'numeric'
     })
 }
+export const query_data = `{
+        user {
+            lastName
+            firstName
+            email
+            createdAt
+            discordId
+        }
+    }`
+export const query_transaction = `{
+        transaction {
+            createdAt
+            amount
+            type
+            event {
+                object {
+                    name
+                    type
+                }
+            }
+        }
+    }`
 // ----------------- toolTip_ func-----------------
 export const toolTip_ = (circle, elem, xp) => {
     const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "title")

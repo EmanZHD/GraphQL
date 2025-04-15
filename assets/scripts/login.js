@@ -13,7 +13,7 @@ export const verifyJWT = async () => {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${tocken}`,
-                    'Content-TYpe': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     query: `{

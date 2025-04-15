@@ -45,8 +45,7 @@ const loading_Home = () => {
     if (logo_img) {
         logo_img.remove()
     }
-    main.innerHTML = `<h1>You are successfully authenticated</h1>
-    `
+
     injectFooter()
     load_profile()
     document.querySelector('.nav-log').addEventListener('click', (e) => LogOUt(e))

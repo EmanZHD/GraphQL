@@ -1,5 +1,5 @@
 import { Domain, routing } from "./utils.js"
-import { formatDate, toolTip_, categorize_SKills, createLIne } from "./profile_utils.js"
+import { formatDate, toolTip_, categorize_SKills, createLIne, query_data, query_transaction } from "./profile_utils.js"
 import { injectNav, buildDashboard, createStatsCard } from "./Templates.js"
 
 const info = {}
@@ -405,33 +405,12 @@ export const load_profile = () => {
     injectNav()
     buildDashboard()
     createStatsCard()
-    fetchData(`{
-        user {
-            lastName
-            firstName
-            email
-            createdAt
-            discordId
-        }
-    }`, (data) => {
+    fetchData(query_data, (data) => {
         info.lastname = data.data.user[0].lastName
         info.firstname = data.data.user[0].firstName
         loading_info()
     })
-
-    fetchData(`{
-        transaction {
-            createdAt
-            amount
-            type
-            event {
-                object {
-                    name
-                    type
-                }
-            }
-        }
-    }`, (data) => {
+    fetchData(query_transaction, (data) => {
         info.transaction = data.data.transaction
         count_XP()
         count_Project()
