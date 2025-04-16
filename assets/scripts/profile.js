@@ -226,7 +226,7 @@ const bar_graph = () => {
         rect.setAttribute("y", y)
         rect.setAttribute("width", barLength)
         rect.setAttribute("height", barHeight)
-        rect.setAttribute("fill", "purple")
+        rect.setAttribute("fill", "#965dff")
         barGroup.appendChild(rect)
 
         const label = document.createElementNS("http://www.w3.org/2000/svg", "text")
@@ -276,8 +276,7 @@ const Draw_circles = (elem) => {
     while (i < 9) {
         // let radius = 80 + i * 40
         let radius = 20 + i * 20
-        console.log('radius', radius);
-
+        console.log('radius', radius)
         let e = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         e.setAttribute('cx', '0')
         e.setAttribute('cy', '0')
@@ -297,7 +296,7 @@ const radar_chart = () => {
         value
     }))
     const numAxes = data.length
-    const maxRadius = 180 // Maximum radius for 100%
+    const maxRadius = 180
     const angleStep = (2 * Math.PI) / numAxes // Angle between axes
     const chartGroup = document.querySelector(".statistics #radar-chart")
 
@@ -305,8 +304,10 @@ const radar_chart = () => {
     // Calculate points for the polygon
     let points = []
     data.forEach((item, index) => {
+        console.log('index=', index, ' item=', item);
+
         const angle = index * angleStep - Math.PI / 2 // Start from the top (subtract 90 degrees)
-        const radius = (item.value / 100) * maxRadius // Scale the value to the radius
+        const radius = (item.value / 100) * maxRadius
         const x = radius * Math.cos(angle)
         const y = radius * Math.sin(angle)
         points.push(`${x},${y}`)
@@ -335,11 +336,10 @@ const radar_chart = () => {
         chartGroup.appendChild(text)
     })
 
-    // Draw the data polygon
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon")
     polygon.setAttribute("points", points.join(" "))
-    polygon.setAttribute("fill", "rgba(128, 0, 128, 0.5)") // Purple fill with transparency
-    polygon.setAttribute("stroke", "purple")
+    polygon.setAttribute("fill", "#caadff9c")
+    polygon.setAttribute("stroke", "#965dff")
     polygon.setAttribute("stroke-width", "2")
     chartGroup.appendChild(polygon)
 }
