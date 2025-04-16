@@ -41,7 +41,6 @@ export const login_form = `
         <span class="btn-text">Login</span>
         <span class="spinner hidden" id="spinner"></span>
     </button>
-                <!-- <input type="submit" class="btn" value="Login"> -->
             </form>
 `
 export const logo_templ = `
@@ -137,14 +136,7 @@ export const buildDashboard = () => {
             <div class="dashboard-card statistics">
                 <h3>Technologies</h3>
                 <svg style="overflow: visible;" width="60%" height="60%" viewBox="-200 -200 400 400" class="mv6-01 pb7-01" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Define the center and radius -->
                     <g id="radar-chart">
-                        <!-- Background circles (for reference, like in the image) -->
-                        <!--<circle cx="0" cy="0" r="40" fill="none" stroke="#444" stroke-width="1" />
-                        <circle cx="0" cy="0" r="80" fill="none" stroke="#444" stroke-width="1" />
-                        <circle cx="0" cy="0" r="120" fill="none" stroke="#444" stroke-width="1" />
-                        <circle cx="0" cy="0" r="160" fill="none" stroke="#444" stroke-width="1" />
-                        <circle cx="0" cy="0" r="200" fill="none" stroke="#444" stroke-width="1" />-->
                     </g>
                 </svg>
             </div>

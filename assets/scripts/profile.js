@@ -289,6 +289,7 @@ const Draw_circles = (elem) => {
         i++
     }
 }
+
 // ----------------- radar_chart func-----------------
 const radar_chart = () => {
     const data = Object.entries(info.remainingSkills).map(([name, value]) => ({
