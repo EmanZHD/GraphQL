@@ -245,7 +245,6 @@ u        label.setAttribute("text-anchor", "end")
         percentageText.setAttribute("x", barLength + 20)
         percentageText.setAttribute("y", y + barHeight / 2) // Slightly above the value
         percentageText.setAttribute("fill", "black")
-        // percentageText.setAttribute("font-size", fontSize)
         percentageText.setAttribute("text-anchor", "start")
         percentageText.setAttribute("dominant-baseline", "middle")
         percentageText.textContent = `${percentage}%`
@@ -263,15 +262,15 @@ u        label.setAttribute("text-anchor", "end")
 
     })
 
-    // Draw x-axis line
     const xAxis = createLIne(0, chartHeight, chartHeight, chartHeight)
-    chartGroup.appendChild(xAxis)
-
-    // Draw y-axis line
     const yAxis = createLIne(0, 0, 0, chartHeight)
+
+    chartGroup.appendChild(xAxis)
     chartGroup.appendChild(yAxis)
 
 }
+
+// ----------------- Draw_circles func-----------------
 const Draw_circles = (elem) => {
     let i = 0
     const p = 40
