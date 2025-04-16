@@ -233,7 +233,7 @@ const bar_graph = () => {
         label.setAttribute("x", -10)
         label.setAttribute("y", y + barHeight / 2)
         label.setAttribute("fill", "black")
-u        label.setAttribute("text-anchor", "end")
+        label.setAttribute("text-anchor", "end")
         label.setAttribute("dominant-baseline", "middle")
         label.textContent = item.name
         chartGroup.appendChild(label)
