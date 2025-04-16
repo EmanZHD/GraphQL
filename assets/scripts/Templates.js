@@ -127,7 +127,7 @@ export const buildDashboard = () => {
             <div class="dashboard-card analytics">
                 <h3>Technical skills</h3>
                 <div class="svg-container">
-                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                    <svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                         <g id="bar-chart"></g>
                     </svg>
                 </div>
