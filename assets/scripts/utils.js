@@ -1,4 +1,4 @@
-import { footer_templ, login_form, logo_templ } from "./Templates.js"
+import { login_form, logo_templ } from "./Templates.js"
 import { setupLOgin, LogOUt } from "./login.js"
 import { load_profile } from "./profile.js"
 
@@ -7,21 +7,17 @@ const main = document.querySelector('main')
 const footer = document.querySelector('footer')
 const nav = document.querySelector('nav')
 
-// ----------------- alert_popup func-----------------
-export function getCurrentYearAsMax() {
-    const currentYear = new Date().getFullYear();
-    document.querySelector('footer').innerHTML = footer_templ
-    const footer = document.querySelector(".footer-content");
-    footer.innerHTML = `
-    <p>&copy;${currentYear} 01Oujda-GraphQL | Crafted with ❤ by
-    <a href="https://learn.zone01oujda.ma/git/izahid">izahid</a>. All Rights Reserved.</p>
-    `
-}
-
 // ----------------- injectFooter func-----------------
 const injectFooter = () => {
     footer.innerHTML = ''
-    getCurrentYearAsMax()
+    const footer_div = document.createElement('div')
+    footer_div.className = 'footer-content'
+    const currentYear = new Date().getFullYear();
+    footer_div.innerHTML = `
+    <p>&copy;${currentYear} 01Oujda-GraphQL | Crafted with ❤ by
+    <a href="https://learn.zone01oujda.ma/git/izahid">izahid</a>. All Rights Reserved.</p>
+    `
+    footer.appendChild(footer_div)
 }
 
 // ----------------- injectLOgo func-----------------

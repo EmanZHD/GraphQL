@@ -44,9 +44,6 @@ export const login_form = `
                 <!-- <input type="submit" class="btn" value="Login"> -->
             </form>
 `
-export const footer_templ = `
-    <div class="footer-content"></div>
-`
 export const logo_templ = `
         <div class="graph-img">
             <img src="assets/img/graphql-opened.svg" alt="">
@@ -68,10 +65,10 @@ export const injectNav = () => {
 }
 
 const stat = [
-    { type: 'total', label: 'TOTAL XP', value: '' },
-    { type: 'audit', label: 'Audit Ratio', value: '' },
-    { type: 'project', label: 'PROJECTS', value: '' },
-    { type: 'level', label: 'LEVEL', value: '' }
+    { type: 'total', label: 'TOTAL XP' },
+    { type: 'audit', label: 'Audit Ratio' },
+    { type: 'project', label: 'PROJECTS' },
+    { type: 'level', label: 'LEVEL' }
 ]
 
 export const createStatsCard = () => {
@@ -89,7 +86,6 @@ export const createStatsCard = () => {
         label.textContent = elem.label
 
         const value = document.createElement('span')
-        // value.textContent = elem.value
 
         content.append(label)
         content.append(value)
@@ -156,20 +152,5 @@ export const buildDashboard = () => {
         </div>
     </div>
   `
-
-    // Call this after login success or when building the dashboard
-    generateChartBars()
 }
-
-// Helper function to generate random chart bars
-const generateChartBars = () => {
-    // const barsContainer = document.querySelector('.chart-bars')
-    // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-    // const heights = [85, 60, 75, 40, 65, 30, 50] // percentages
-
-    // barsContainer.innerHTML = days.map((day, i) =>
-    //   `<div class="chart-bar" style="height: ${heights[i]}%" data-day="${day}"></div>`
-    // ).join('')
-}
-
 

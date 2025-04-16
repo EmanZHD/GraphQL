@@ -40,17 +40,12 @@ const DrawAxes = (chartGroup) => {
     chartGroup.appendChild(yAxis);
 }
 
-const build_pointChart = () => {
-
-}
-
 // ----------------- xp_tracker func-----------------
 const xp_tracker = () => {
     const points = []
     let accumulator = 0
     info.transaction.filter((elem) => elem.type === 'xp' && elem.event.object.type === "module")
         .forEach(elem => {
-            console.log('elem=> ', elem)
             XP_Progress[elem.createdAt] = elem.amount
         })
     const trackerXP = Object.entries(XP_Progress)
@@ -60,18 +55,21 @@ const xp_tracker = () => {
             return {
                 date: new Date(key),
                 xp: accumulator / 1000,
-            };
+            }
         })
-    // .sort((a, b) => a.date - b.date);
     info.points = points
     console.log('here', trackerXP)
     console.log('points', points)
-    // console.log('test=>', trackerXP)
+    return trackerXP
+}
+// ----------------- build_pointChart func-----------------
+const build_pointChart = () => {
+    const trackerXP = xp_tracker()
     const container = document.querySelector('.graph-area')
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     svg.setAttribute('id', 'xpChart')
     svg.setAttribute('viewBox', '0 0 1200 700')
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet")
     container.appendChild(svg)
 
     setting.width = 1200
@@ -85,8 +83,6 @@ const xp_tracker = () => {
     chartGroup.setAttribute('class', 'svg-glb')
     svg.appendChild(chartGroup)
 
-
-    //calculat scales
     const xScale = (date) => {
         const max_minDate = [trackerXP[0].date, trackerXP[trackerXP.length - 1].date]
         return ((date - max_minDate[0]) / (max_minDate[1] - max_minDate[0])) * setting.charWidth
@@ -98,7 +94,7 @@ const xp_tracker = () => {
     }
 
 
-    const areaPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const areaPath = document.createElementNS('http://www.w3.org/2000/svg', 'path')
     let areaData = trackerXP.map((d, xp) => {
         const x = xScale(d.date)
         const y = yScale(d.xp)
@@ -130,21 +126,23 @@ const xp_tracker = () => {
         circle.setAttribute('cy', y)
         circle.setAttribute('r', 3)
         circle.setAttribute('class', 'data-point')
-        console.log('------>', info.points[i]);
+        console.log('------>', info.points[i])
 
         toolTip_(circle, elem, info.points[i])
         chartGroup.appendChild(circle)
     })
     DrawAxes(chartGroup)
 
-    const legend1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    legend1.setAttribute('x', setting.charWidth - 10);
-    legend1.setAttribute('y', 0);
-    legend1.setAttribute('class', 'legend');
-    legend1.setAttribute('text-anchor', 'end');
-    legend1.textContent = `Total ${trackerXP[trackerXP.length - 1].xp} KB`;
-    chartGroup.appendChild(legend1);
+    const legend1 = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+    legend1.setAttribute('x', setting.charWidth - 10)
+    legend1.setAttribute('y', 0)
+    legend1.setAttribute('class', 'legend')
+    legend1.setAttribute('text-anchor', 'end')
+    legend1.textContent = `Total ${trackerXP[trackerXP.length - 1].xp} KB`
+    chartGroup.appendChild(legend1)
 }
+
+
 
 // algo back-end front-end prog stats tcp ai sys-admin game
 // ----------------- skills_tracker func-----------------
@@ -159,9 +157,9 @@ const skills_tracker = () => {
         return (acc)
     }, {})
     // { info.technicalSkills, info.remainingSkills } = categorize_SKills(test)
-    const result = categorize_SKills(test);
-    info.technicalSkills = result.technicalSkills;
-    info.remainingSkills = result.remainingSkills;
+    const result = categorize_SKills(test)
+    info.technicalSkills = result.technicalSkills
+    info.remainingSkills = result.remainingSkills
 
 }
 
@@ -386,7 +384,6 @@ const count_ratio = () => {
 
 const fetchData = async (query, dataProcessor) => {
     const token = localStorage.getItem('tocken')
-    // console.log('tocken', token)
     try {
         const response = await fetch(`https://${Domain}/api/graphql-engine/v1/graphql`, {
             method: 'POST',
@@ -408,7 +405,7 @@ export const load_profile = () => {
     fetchData(query_data, (data) => {
         info.lastname = data.data.user[0].lastName
         info.firstname = data.data.user[0].firstName
-        loading_info()
+        // loading_info()
     })
     fetchData(query_transaction, (data) => {
         info.transaction = data.data.transaction
@@ -417,7 +414,7 @@ export const load_profile = () => {
         count_level()
         count_ratio()
         loading_info()
-        xp_tracker()
+        build_pointChart()
         skills_tracker()
         bar_graph()
         radar_chart()

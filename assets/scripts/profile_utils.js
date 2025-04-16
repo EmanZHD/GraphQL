@@ -48,8 +48,6 @@ export const toolTip_ = (circle, elem, xp) => {
     xp = xp / 1000
     tspan2.textContent = `${xp > 1000 ? "+" + xp + " MB" : "+" + xp + " KB"
         }`
-
-
     text.appendChild(tspan1);
     text.appendChild(tspan2);
 
@@ -71,6 +69,8 @@ export const categorize_SKills = (skills) => {
                 !technical_Skills.includes(skill)))
     }
 }
+
+// ----------------- createLIne func-----------------
 export const createLIne = (x1, x2, y1, y2) => {
     const axis = document.createElementNS("http://www.w3.org/2000/svg", "line");
     axis.setAttribute("x1", x1);
@@ -80,22 +80,4 @@ export const createLIne = (x1, x2, y1, y2) => {
     axis.setAttribute("stroke", "#444");
     axis.setAttribute("stroke-width", "1");
     return axis
-    // chartGroup.appendChild(xAxis);
 }
-
-// -------------- load_profile func --------------
-// export const fetchData = async (query, dataProcessor) => {
-//     const token = localStorage.getItem('tocken')
-//     // console.log('tocken', token)
-//     try {
-//         const response = await fetch(`https://${Domain}/api/graphql-engine/v1/graphql`, {
-//             method: 'POST',
-//             headers: { Authorization: `Bearer ${token}` },
-//             body: JSON.stringify({ query })
-//         })
-//         const data = await response.json()
-//         dataProcessor(data)
-//     } catch (err) {
-//         routing('error')
-//     }
-// }
