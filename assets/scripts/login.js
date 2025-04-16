@@ -5,7 +5,7 @@ const credentials = {}
 // -------------- verifyJWT func --------------
 export const verifyJWT = async () => {
     const tocken = localStorage.getItem("tocken")
-    console.log('tocken =>', tocken)
+    // console.log('tocken =>', tocken)
     if (!tocken) return false
     try {
         const response = await fetch(`https://${Domain}/api/graphql-engine/v1/graphql`,
@@ -51,7 +51,7 @@ export const setupLOgin = () => {
                 await verifyCredentials();
             } catch (error) {
                 // renderError(error.message || 'Login failed');
-                console.log('yyyy', error.error)
+                // console.log('yyyy', error.error)
                 displayERror(error.error[0])
                 return
             }

@@ -58,8 +58,8 @@ const xp_tracker = () => {
             }
         })
     info.points = points
-    console.log('here', trackerXP)
-    console.log('points', points)
+    // console.log('here', trackerXP)
+    // console.log('points', points)
     return trackerXP
 }
 // ----------------- build_pointChart func-----------------
@@ -126,7 +126,7 @@ const build_pointChart = () => {
         circle.setAttribute('cy', y)
         circle.setAttribute('r', 3)
         circle.setAttribute('class', 'data-point')
-        console.log('------>', info.points[i])
+        // console.log('------>', info.points[i])
 
         toolTip_(circle, elem, info.points[i])
         chartGroup.appendChild(circle)
@@ -273,10 +273,11 @@ const bar_graph = () => {
 // ----------------- Draw_circles func-----------------
 const Draw_circles = (elem) => {
     let i = 0
-    const p = 40
     while (i < 9) {
         // let radius = 80 + i * 40
         let radius = 20 + i * 20
+        console.log('radius', radius);
+
         let e = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         e.setAttribute('cx', '0')
         e.setAttribute('cy', '0')
@@ -285,7 +286,6 @@ const Draw_circles = (elem) => {
         e.setAttribute('stroke', '#444')
         e.setAttribute('stroke-width', '1')
         elem.appendChild(e)
-        radius += p
         i++
     }
 }
@@ -377,7 +377,7 @@ const fetchData = async (query, dataProcessor) => {
         const data = await response.json()
         dataProcessor(data)
     } catch (err) {
-        console.error('test ', err)
+        // console.error('test ', err)
         routing('error')
     }
 }
