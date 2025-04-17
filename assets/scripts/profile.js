@@ -47,15 +47,31 @@ export const xp_tracker = () => {
         .forEach(elem => {
             XP_Progress[elem.createdAt] = elem.amount
         })
-    const trackerXP = Object.entries(XP_Progress)
+
+    const xpsDate = {}
+    Object.entries(XP_Progress)
         .map(([key, value]) => {
             points.push(value)
             accumulator += value
-            return {
+
+            const date = new Date(key)
+            const dateKey = date.toISOString().split('T')[0]
+
+            xpsDate[dateKey] = {
                 date: new Date(key),
                 xp: accumulator / 1000,
             }
         })
+
+    const trackerXP = Object.values(xpsDate)
+    //     .map(([key, value]) => {
+    //         points.push(value)
+    //         accumulator += value
+    //         return {
+    //             date: new Date(key),
+    //             xp: accumulator / 1000,
+    //         }
+    //     })
     info.points = points
     // console.log('here', trackerXP)
     // console.log('points', points)
@@ -65,6 +81,11 @@ export const xp_tracker = () => {
 // ----------------- build_pointChart func-----------------
 const build_pointChart = () => {
     const trackerXP = xp_tracker()
+    console.log('cp', trackerXP);
+    const elem = document.querySelector('.graph-area')
+    if (elem) {
+        elem.innerHTML = ``
+    }
     const container = document.querySelector('.graph-area')
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     svg.setAttribute('id', 'xpChart')
@@ -371,6 +392,8 @@ const fetchData = async (query, dataProcessor) => {
 }
 // -------------- load_profile func --------------
 export const load_profile = () => {
+    console.log('00');
+
     injectNav()
     buildDashboard()
     createStatsCard()
@@ -380,6 +403,7 @@ export const load_profile = () => {
         // loading_info()
     })
     fetchData(query_transaction, (data) => {
+        console.log('01');
         info.transaction = data.data.transaction
         count_XP()
         count_Project()

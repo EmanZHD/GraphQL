@@ -41,9 +41,13 @@ const loading_Home = () => {
     if (logo_img) {
         logo_img.remove()
     }
+    // console.log("hooome");
 
     injectFooter()
     load_profile()
+    document.querySelector('.nav-about').addEventListener('click', function () {
+        window.open('https://learn.zone01oujda.ma/git/izahid', '_blank')
+    })
     document.querySelector('.nav-log').addEventListener('click', (e) => LogOUt(e))
 }
 
