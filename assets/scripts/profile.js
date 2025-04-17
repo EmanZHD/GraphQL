@@ -178,26 +178,22 @@ const bar_graph = () => {
     const svgHeight = 600
     svg.setAttribute("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
 
-    const margin = { top: 20, right: 50, bottom: 40, left: 150 } // Extra bottom margin for x-axis labels
+    const margin = { top: 20, right: 50, bottom: 40, left: 150 }
     const chartWidth = svgWidth - margin.left - margin.right
     const chartHeight = svgHeight - margin.top - margin.bottom
 
     chartGroup.setAttribute("transform", `translate(${margin.left + 50}, ${margin.top})`)
 
     const numBars = data.length
-    const barHeight = chartHeight / numBars * 0.6 // 60% of the available space per bar
-    const barSpacing = chartHeight / numBars * 0.4 // 40% spacing between bars
-    const maxScaleValue = 100 // Treat values as out of 100 for percentage scaling
+    const barHeight = chartHeight / numBars * 0.6
+    const barSpacing = chartHeight / numBars * 0.4
+    const maxScaleValue = 100
+    const maxBarLength = chartWidth * 0.8
 
-    // Scale for bar lengths (100% = maxScaleValue = 100)
-    const maxBarLength = chartWidth * 0.8 // 80% of chart width for the longest bar
-    const scale = maxBarLength / maxScaleValue // Scale factor: 1% = scale pixels
-
-    // Draw x-axis with percentage scale
-    const numTicks = 5 // Number of ticks (0%, 25%, 50%, 75%, 100%)
+    const numTicks = 5
     for (let i = 0; i <= numTicks; i++) {
-        const percentage = (i / numTicks) * 100 // Percentage (0, 25, 50, 75, 100)
-        const x = (percentage / 100) * maxBarLength // Position on the x-axis
+        const percentage = (i / numTicks) * 100 //(0, 25, 50, 75, 100)
+        const x = (percentage / 100) * maxBarLength
 
         const xAxis = createLIne(x, x, chartHeight, chartHeight + 10)
         chartGroup.appendChild(xAxis)
@@ -213,7 +209,7 @@ const bar_graph = () => {
 
     data.forEach((item, index) => {
         const y = index * (barHeight + barSpacing)
-        const barLength = (item.value / maxScaleValue) * maxBarLength // Scale the bar length as a percentage out of 100
+        const barLength = (item.value / maxScaleValue) * maxBarLength
 
         const barGroup = document.createElementNS("http://www.w3.org/2000/svg", "g")
         barGroup.setAttribute("class", `bar-group bar-group-${index}`)
@@ -238,12 +234,12 @@ const bar_graph = () => {
         label.textContent = item.name
         chartGroup.appendChild(label)
 
-        const percentage = (item.value / maxScaleValue) * 100 // Calculate percentage out of 100
+        const percentage = (item.value / maxScaleValue) * 100
         const percentageText = document.createElementNS("http://www.w3.org/2000/svg", "text")
         percentageText.setAttribute("class", `percentage-text percentage-${index}`)
 
         percentageText.setAttribute("x", barLength + 20)
-        percentageText.setAttribute("y", y + barHeight / 2) // Slightly above the value
+        percentageText.setAttribute("y", y + barHeight / 2)
         percentageText.setAttribute("fill", "black")
         percentageText.setAttribute("text-anchor", "start")
         percentageText.setAttribute("dominant-baseline", "middle")
@@ -301,31 +297,27 @@ const radar_chart = () => {
     const chartGroup = document.querySelector(".statistics #radar-chart")
 
     Draw_circles(chartGroup)
-    // Calculate points for the polygon
     let points = []
     data.forEach((item, index) => {
         console.log('index=', index, ' item=', item);
 
-        const angle = index * angleStep - Math.PI / 2 // Start from the top (subtract 90 degrees)
+        const angle = index * angleStep - Math.PI / 2
         const radius = (item.value / 100) * maxRadius
         const x = radius * Math.cos(angle)
         const y = radius * Math.sin(angle)
         points.push(`${x},${y}`)
     })
 
-    // Draw the axes and labels
     data.forEach((item, index) => {
         const angle = index * angleStep - Math.PI / 2
         const x = maxRadius * Math.cos(angle)
         const y = maxRadius * Math.sin(angle)
-        const labelX = (maxRadius + 22) * Math.cos(angle) // Offset for label
+        const labelX = (maxRadius + 22) * Math.cos(angle)
         const labelY = (maxRadius + 22) * Math.sin(angle)
 
-        // Draw axis
         const line = createLIne(0, x, 0, y)
         chartGroup.appendChild(line)
 
-        // Draw label
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text")
         text.setAttribute("x", labelX)
         text.setAttribute("y", labelY)
