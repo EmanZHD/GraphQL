@@ -31,26 +31,25 @@ export const query_transaction = `{
     }`
 // ----------------- toolTip_ func-----------------
 export const toolTip_ = (circle, elem, xp) => {
-    console.log('here-');
     const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "title")
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    text.setAttribute('text-anchor', 'middle');
-    text.setAttribute('dominant-baseline', 'middle');
-    text.setAttribute('class', 'tooltip-text');
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+    text.setAttribute('text-anchor', 'middle')
+    text.setAttribute('dominant-baseline', 'middle')
+    text.setAttribute('class', 'tooltip-text')
 
-    const tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-    tspan1.setAttribute('x', 0);
-    tspan1.setAttribute('dy', -10);
-    tspan1.textContent = formatDate(elem.date);
+    const tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan')
+    tspan1.setAttribute('x', 0)
+    tspan1.setAttribute('dy', -10)
+    tspan1.textContent = formatDate(elem.date)
 
-    const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-    tspan2.setAttribute('x', 0);
-    tspan2.setAttribute('dy', 20);
+    const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan')
+    tspan2.setAttribute('x', 0)
+    tspan2.setAttribute('dy', 20)
     xp = xp / 1000
     tspan2.textContent = `${xp > 1000 ? "+" + xp + " MB" : "+" + xp + " KB"
         }`
-    text.appendChild(tspan1);
-    text.appendChild(tspan2);
+    text.appendChild(tspan1)
+    text.appendChild(tspan2)
 
     tooltip.appendChild(text)
 
@@ -73,12 +72,12 @@ export const categorize_SKills = (skills) => {
 
 // ----------------- createLIne func-----------------
 export const createLIne = (x1, x2, y1, y2) => {
-    const axis = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    axis.setAttribute("x1", x1);
-    axis.setAttribute("y1", y1);
-    axis.setAttribute("x2", x2);
-    axis.setAttribute("y2", y2);
-    axis.setAttribute("stroke", "#444");
-    axis.setAttribute("stroke-width", "1");
+    const axis = document.createElementNS("http://www.w3.org/2000/svg", "line")
+    axis.setAttribute("x1", x1)
+    axis.setAttribute("y1", y1)
+    axis.setAttribute("x2", x2)
+    axis.setAttribute("y2", y2)
+    axis.setAttribute("stroke", "#444")
+    axis.setAttribute("stroke-width", "1")
     return axis
 }

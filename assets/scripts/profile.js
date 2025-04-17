@@ -128,7 +128,6 @@ const build_pointChart = () => {
         // console.log('------>', info.points[i])
 
         toolTip_(circle, elem, info.points[i])
-        console.log('here--');
         chartGroup.appendChild(circle)
     })
 
@@ -270,7 +269,6 @@ const Draw_circles = (elem) => {
     while (i < 9) {
         // let radius = 80 + i * 40
         let radius = 20 + i * 20
-        console.log('radius', radius)
         let e = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         e.setAttribute('cx', '0')
         e.setAttribute('cy', '0')

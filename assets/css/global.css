@@ -38,7 +38,7 @@ body {
 }
 
 .graph-img img {
-    width: 70%;
+    width: 65%;
 }
 
 /* -------------------- style main -------------------- */
@@ -566,24 +566,6 @@ h3 {
     color: #272529;
 }
 
-/* Income Summary Card */
-/* .user-stats {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.user-stats h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.user-stats h2 span {
-    color: #4CAF50;
-    font-weight: bold;
-} */
-
 .percentage-change {
     display: flex;
     flex-direction: column;
@@ -814,19 +796,6 @@ h3 {
 
 }
 
-/* @media (max-width: 816px) {
-    .statistics svg {
-        width: 100%;
-    }
-
-    svg {
-        width: 100%;
-        height: auto;
-    }
-
-} */
-
-
 .dashboard-card.user-stats {
     display: flex;
     /* height: 100%; */
@@ -866,7 +835,6 @@ h3 {
     font-weight: bolder;
 }
 
-/* Background colors for each section */
 .user-stats .section.total {
     background: rgba(0, 98, 249, 0.15);
 }
@@ -883,7 +851,6 @@ h3 {
     background: rgba(156, 39, 176, 0.15);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .dashboard-card.user-stats {
         /* flex-direction: column; */
@@ -1000,35 +967,6 @@ svg {
     color: red;
 }
 
-/* .data-point {
-    fill: #4a90e2;
-    stroke: white;
-    stroke-width: 1.5;
-    transition: r 0.2s ease;
-}
-
-.tooltip-bg {
-    fill: rgba(0, 0, 0, 0.85);
-    stroke: #555;
-    stroke-width: 1;
-}
-
-.tooltip-text {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    fill: rgb(255, 79, 79);
-} */
-/* 
-.tooltip-group {
-    transition: opacity 0.2s ease;
-} */
-/* .data-point {
-    fill: #4a90e2;
-    stroke: white;
-    stroke-width: 1.5;
-    transition: r 0.2s ease;
-} */
-
 .tooltip-bg {
     fill: rgba(0, 0, 0, 0.85);
     stroke: #555;
@@ -1041,9 +979,6 @@ svg {
     fill: red;
 }
 
-/* .tooltip-group {
-    transition: opacity 0.2s ease;
-} */
 .axis {
     stroke: #000000;
     stroke-width: 2;
@@ -1053,7 +988,3 @@ svg {
     font-size: 1.3rem;
     fill: #000000;
 }
-
-
-
-/* /////////////////////////////////////////// */
