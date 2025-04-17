@@ -1,7 +1,6 @@
 import { Domain, routing } from "./utils.js"
-import { formatDate, toolTip_, categorize_SKills, createLIne, query_data, query_transaction } from "./profile_utils.js"
+import { toolTip_, categorize_SKills, createLIne, query_data, query_transaction } from "./profile_utils.js"
 import { injectNav, buildDashboard, createStatsCard } from "./Templates.js"
-
 const info = {}
 const XP_Progress = {}
 const setting = {}
@@ -32,7 +31,7 @@ const count_XP = () => {
 }
 
 // -------------- DrawAxes func --------------
-const DrawAxes = (chartGroup) => {
+export const DrawAxes = (chartGroup) => {
     const xAxis = createLIne(0, setting.charWidth, setting.chartHeight, setting.chartHeight)
     chartGroup.appendChild(xAxis)
 
@@ -41,7 +40,7 @@ const DrawAxes = (chartGroup) => {
 }
 
 // ----------------- xp_tracker func-----------------
-const xp_tracker = () => {
+export const xp_tracker = () => {
     const points = []
     let accumulator = 0
     info.transaction.filter((elem) => elem.type === 'xp' && elem.event.object.type === "module")
@@ -62,6 +61,7 @@ const xp_tracker = () => {
     // console.log('points', points)
     return trackerXP
 }
+
 // ----------------- build_pointChart func-----------------
 const build_pointChart = () => {
     const trackerXP = xp_tracker()
@@ -116,7 +116,6 @@ const build_pointChart = () => {
     path.setAttribute('class', 'trend-line')
     chartGroup.appendChild(path)
 
-
     trackerXP.forEach((elem, i) => {
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
         const x = xScale(elem.date)
@@ -129,10 +128,11 @@ const build_pointChart = () => {
         // console.log('------>', info.points[i])
 
         toolTip_(circle, elem, info.points[i])
+        console.log('here--');
         chartGroup.appendChild(circle)
     })
-    DrawAxes(chartGroup)
 
+    DrawAxes(chartGroup)
     const legend1 = document.createElementNS('http://www.w3.org/2000/svg', 'text')
     legend1.setAttribute('x', setting.charWidth - 10)
     legend1.setAttribute('y', 0)
@@ -141,8 +141,6 @@ const build_pointChart = () => {
     legend1.textContent = `Total ${trackerXP[trackerXP.length - 1].xp} KB`
     chartGroup.appendChild(legend1)
 }
-
-
 
 // algo back-end front-end prog stats tcp ai sys-admin game
 // ----------------- skills_tracker func-----------------

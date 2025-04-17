@@ -31,6 +31,7 @@ export const query_transaction = `{
     }`
 // ----------------- toolTip_ func-----------------
 export const toolTip_ = (circle, elem, xp) => {
+    console.log('here-');
     const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "title")
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('text-anchor', 'middle');
