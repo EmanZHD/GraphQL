@@ -1,4 +1,4 @@
-import { login_form, logo_templ } from "./Templates.js"
+import { login_form } from "./Templates.js"
 import { setupLOgin, LogOUt } from "./login.js"
 import { load_profile } from "./profile.js"
 
