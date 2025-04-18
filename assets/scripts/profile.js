@@ -295,8 +295,6 @@ const radar_chart = () => {
     Draw_circles(chartGroup)
     let points = []
     data.forEach((item, index) => {
-        console.log('index=', index, ' item=', item);
-
         const angle = index * angleStep - Math.PI / 2
         const radius = (item.value / 100) * maxRadius
         const x = radius * Math.cos(angle)

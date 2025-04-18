@@ -44,6 +44,9 @@ const loading_Home = () => {
 
     injectFooter()
     load_profile()
+    document.querySelector('.nav-about').addEventListener('click', function () {
+        window.open('https://learn.zone01oujda.ma/git/izahid', '_blank')
+    })
     document.querySelector('.nav-log').addEventListener('click', (e) => LogOUt(e))
 }
 
@@ -103,22 +106,38 @@ export const alert_popup = (alertSetting) => {
 
 // ----------------- togleINputs func-----------------
 export const togleINputs = () => {
-    const inputs = document.querySelectorAll(".input");
-    const toggleIcon = document.querySelector(".show-hide")
+    const inputs = document.querySelectorAll(".input")
+    const passINput = document.querySelector(".pass .input")
+    const hide = document.querySelector('.fa-eye-slash')
+    const show = document.querySelector('.fa-eye')
+
+
+    hide ? hide.addEventListener('click', () => {
+        console.log('show00', passINput.type)
+        if (passINput.type == 'password') {
+            passINput.type = 'text'
+            hide.classList.replace('fa-eye-slash', 'fa-eye')
+        } else {
+            passINput.type = 'password'
+            document.querySelector('.fa-eye').classList.replace('fa-eye', 'fa-eye-slash')
+        }
+
+    }) : ''
     function addcl() {
-        let parent = this.parentNode.parentNode;
-        parent.classList.add("focus");
+        console.log('--')
+        let parent = this.parentNode.parentNode
+        parent.classList.add("focus")
     }
 
     function remcl() {
-        let parent = this.parentNode.parentNode;
+        let parent = this.parentNode.parentNode
         if (this.value == "") {
-            parent.classList.remove("focus");
+            parent.classList.remove("focus")
         }
     }
 
     inputs.forEach(input => {
-        input.addEventListener("focus", addcl);
-        input.addEventListener("blur", remcl);
-    });
+        input.addEventListener("focus", addcl)
+        input.addEventListener("blur", remcl)
+    })
 }
