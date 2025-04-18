@@ -8,7 +8,7 @@ This GraphQL app uses **GraphQL endpoint of 01 edu** to access your own profile 
 
 <div align="center">
     <a href="https://emanzhd.github.io/GraphQL/">
-        <img src="./assets/img/loginPage.png" height="120x" width="335px"/>
+        <img src="./assets/img/loginPage.png" height="" width="335px"/>
     </a>
     <!-- <a href="https://emanzhd.github.io/GraphQL/">
         <img src="./assets/img/loginPage.png" height="307px" width="614px"/>
